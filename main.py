@@ -1,22 +1,21 @@
-# main.py — Runs all 3 agents with full token usage reporting
+# main.py — Runs the research pipeline with full token usage reporting
+#
+# NOTE: Analyst + Reporter are TEMPORARILY paused while we lock down the
+# Researcher + company_scraper integration. Re-enable by uncommenting the
+# imports and the two blocks marked "ANALYST" / "REPORTER" below.
 
 import json, os, sys
 from datetime import datetime
 from agents.researcher import run_researcher
-from agents.analyst import run_analyst
-from agents.reporter import run_reporter
+# from agents.analyst import run_analyst   # paused
+# from agents.reporter import run_reporter  # paused
 from utils.token_tracker import tracker
-
-
-def log(msg: str):
-    ts = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    line = f"[{ts}] {msg}"
-    print(line)
-    with open("logs/run_log.txt", "a", encoding="utf-8") as f:
-        f.write(line + "\n")
+from utils.logger import log
 
 
 def run_pipeline(skip_research=False, skip_analysis=False):
+    os.makedirs("logs", exist_ok=True)
+    os.makedirs("data/raw", exist_ok=True)
     tracker.reset()
     start = datetime.now()
 
@@ -34,20 +33,22 @@ def run_pipeline(skip_research=False, skip_analysis=False):
         researcher_output = run_researcher()
 
     # ── ANALYST ────────────────────────────────────────────────────
-    if skip_analysis and os.path.exists("data/analyst_output.json"):
-        log("⏭️  Skipping analysis — loading cached scores")
-        with open("data/analyst_output.json") as f:
-            analyst_output = json.load(f)
-    else:
-        log("▶️  Agent 2: Analyst")
-        analyst_output = run_analyst(researcher_output)
+    # PAUSED — re-enable when researcher output is solid.
+    # if skip_analysis and os.path.exists("data/analyst_output.json"):
+    #     log("⏭️  Skipping analysis — loading cached scores")
+    #     with open("data/analyst_output.json") as f:
+    #         analyst_output = json.load(f)
+    # else:
+    #     log("▶️  Agent 2: Analyst")
+    #     analyst_output = run_analyst(researcher_output)
 
     # ── REPORTER ───────────────────────────────────────────────────
-    log("▶️  Agent 3: Reporter")
-    run_reporter(analyst_output)
+    # PAUSED — depends on analyst output.
+    # log("▶️  Agent 3: Reporter")
+    # run_reporter(analyst_output)
 
     duration = (datetime.now() - start).total_seconds()
-    log(f"🏁 PIPELINE COMPLETE in {duration:.0f}s → output/report.html")
+    log(f"🏁 RESEARCH-ONLY RUN COMPLETE in {duration:.0f}s → data/raw/all_sectors.json")
 
     # ══════════════════════════════════════════════════════════════
     # TOKEN USAGE SUMMARY — printed after everything completes
@@ -93,6 +94,8 @@ def _save_token_log():
 
 
 def lambda_handler(event, context):
+    # TODO: reporter is currently disabled — return string is stale until
+    # the analyst+reporter blocks above are re-enabled.
     report_path = run_pipeline()
     return {"statusCode": 200, "body": "Report generated"}
 

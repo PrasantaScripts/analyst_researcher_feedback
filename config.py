@@ -5,13 +5,19 @@ import os
 
 load_dotenv()
 
-SECTORS = [
-    "travel logistics and supply chain",
-    "healthcare and pharma",
-    "manufacturing",
-    "independent software vendors",
-    "export-oriented businesses",
-]
+# TEMP: single sector for scraper-integration test. Restore the full list
+# below when re-enabling analyst+reporter.
+SECTORS = ["independent software vendors"]
+# SECTORS = [
+#     "travel logistics and supply chain",
+#     "healthcare and pharma",
+#     "manufacturing",
+#     "independent software vendors",
+#     "export-oriented businesses",
+#     "retail Services",
+#     "fintech services",
+#     "financial services",
+# ]
 
 REVENUE_MIN_CRORE = 500
 REVENUE_MAX_CRORE = 2000
