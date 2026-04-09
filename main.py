@@ -6,18 +6,23 @@
 
 import json, os, sys
 from datetime import datetime
+import config
 from agents.researcher import run_researcher
 # from agents.analyst import run_analyst   # paused
 # from agents.reporter import run_reporter  # paused
 from utils.token_tracker import tracker
 from utils.logger import log
+from utils.s3_storage import preflight_check
 
 
 def run_pipeline(skip_research=False, skip_analysis=False):
     os.makedirs("logs", exist_ok=True)
-    os.makedirs("data/raw", exist_ok=True)
     tracker.reset()
     start = datetime.now()
+
+    # Fail fast if S3 is misconfigured — don't burn 12-18 min of LLM/Tavily calls
+    # only to discover at the end that we can't archive the result.
+    preflight_check()
 
     log("=" * 60)
     log("PROSPECTS AI PIPELINE STARTING")
@@ -48,7 +53,10 @@ def run_pipeline(skip_research=False, skip_analysis=False):
     # run_reporter(analyst_output)
 
     duration = (datetime.now() - start).total_seconds()
-    log(f"🏁 RESEARCH-ONLY RUN COMPLETE in {duration:.0f}s → data/raw/all_sectors.json")
+    log(
+        f"🏁 RESEARCH-ONLY RUN COMPLETE in {duration:.0f}s → "
+        f"s3://{config.S3_BUCKET}/{config.S3_RESEARCH_PREFIX}/"
+    )
 
     # ══════════════════════════════════════════════════════════════
     # TOKEN USAGE SUMMARY — printed after everything completes

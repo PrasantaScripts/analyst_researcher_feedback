@@ -9,6 +9,7 @@ import yfinance as yf
 import config
 from utils.token_tracker import tracker
 from utils.logger import log, warn, error
+from utils.s3_storage import upload_research_output
 from tools.company_scraper import CompanyDataFetcher
 
 load_dotenv()
@@ -318,20 +319,20 @@ def run_researcher() -> dict:
     for sector in config.SECTORS:
         sector_data = research_sector(sector)
         all_data["sectors"].append(sector_data)
-
-        safe = sector.replace(" ", "_").replace("/", "_")
-        path = f"data/raw/{safe}.json"
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        with open(path, "w") as f:
-            json.dump(sector_data, f, indent=2)
-        log(f"💾 Saved {path}")
-
-    os.makedirs("data/raw", exist_ok=True)
-    with open("data/raw/all_sectors.json", "w") as f:
-        json.dump(all_data, f, indent=2)
+        log(f"   sector '{sector}' done")
 
     total = sum(len(s.get("companies", [])) for s in all_data["sectors"])
     log(f"✅ RESEARCHER DONE — {total} companies across {len(all_data['sectors'])} sectors")
+
+    # Upload combined run to S3 (single file per run, timestamped key).
+    # No local file fallback — fail loud so the user notices misconfiguration.
+    try:
+        uri = upload_research_output(all_data)
+        log(f"✅ Research output archived → {uri}")
+    except Exception as e:
+        error(f"S3 upload FAILED, run output not persisted: {e}")
+        raise
+
     return all_data
 
 
