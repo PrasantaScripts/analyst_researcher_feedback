@@ -1,0 +1,115 @@
+# =========================
+# 🐍 Python basics
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+
+# =========================
+# 📦 Virtual Environments
+# =========================
+.venv/
+venv/
+env/
+ENV/
+
+# uv specific (lock + cache handling)
+uv.lock
+
+# =========================
+# 🔐 Environment variables
+# =========================
+.env
+.env.*
+*.env
+
+# =========================
+# 🧪 Testing & Coverage
+# =========================
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+pytest_cache/
+
+# =========================
+# 🧠 Agent / AI Project Stuff
+# =========================
+# Logs
+logs/
+*.log
+
+# Temporary outputs
+tmp/
+temp/
+*.tmp
+
+# Model outputs / generated data
+outputs/
+generated/
+data/cache/
+
+# =========================
+# 📄 Jupyter Notebooks
+# =========================
+.ipynb_checkpoints/
+
+# =========================
+# 🖥️ OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# 🧑‍💻 IDE / Editor
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# 🔧 Type checking / linting
+# =========================
+.mypy_cache/
+.pyre/
+.pytype/
+ruff_cache/
+
+# =========================
+# 📦 Dependency managers
+# =========================
+# uv uses pyproject.toml → keep it
+# DO NOT ignore this:
+# pyproject.toml
+
+# Optional: ignore if you don't want lock file
+# uv.lock
+
+# =========================
+# 🔑 Secrets / keys
+# =========================
+*.pem
+*.key
+secrets.json
+
+# =========================
+# 🐳 Docker (if used later)
+# =========================
+*.pid
+*.sock

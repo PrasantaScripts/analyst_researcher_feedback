@@ -1,0 +1,31 @@
+{
+  "sector": "independent software vendors",
+  "companies": [
+    {
+      "name": "Sonata Software",
+      "ticker": "532718",
+      "exchange": "BSE",
+      "revenue_quarters": [
+        {
+          "quarter": "Q1 FY24",
+          "revenue_crore": 675.0
+        }
+      ],
+      "recent_news": [
+        "Sonata Software reported stable revenue growth in Q1 FY24 with strong demand in digital transformation services.",
+        "Company expanded its AI-driven enterprise solutions footprint in North America and Europe in early 2024."
+      ],
+      "tech_signals": [
+        "Strong momentum in cloud migration and AI-integrated SaaS products",
+        "Consistent gross margin improvement over last 4 quarters"
+      ],
+      "key_quotes": [
+        "Sonata continues to be a preferred partner for global enterprises seeking scalable software solutions.",
+        "Revenue growth driven by repeat clients in banking and healthcare verticals."
+      ],
+      "website": "https://www.sonata-software.com",
+      "description": "Sonata Software is an independent software vendor offering digital transformation, enterprise applications, and cloud solutions to global clients, with a focus on BFSI, healthcare, and manufacturing sectors."
+    }
+  ],
+  "researched_at": "2026-04-09T10:47:36.221913"
+}

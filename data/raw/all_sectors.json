@@ -1,0 +1,487 @@
+{
+  "run_date": "2026-04-09T10:45:15.265938",
+  "sectors": [
+    {
+      "sector": "travel logistics and supply chain",
+      "companies": [
+        {
+          "name": "Transport Corporation of India Limited",
+          "ticker": "TCIL",
+          "exchange": "BSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 625
+            }
+          ],
+          "recent_news": [
+            "TCIL reported a 18.3% YoY growth in consolidated revenue for FY24, driven by expansion in project cargo and e-logistics segments.",
+            "Company inked a strategic partnership with a leading e-commerce player for last-mile delivery in Tier 2/3 cities."
+          ],
+          "tech_signals": [
+            "RSI(14): 58 (neutral)",
+            "MACD bullish crossover observed in Q1 FY24",
+            "50-day MA above 200-day MA"
+          ],
+          "key_quotes": [
+            "TCIL\u2019s asset-light model and tech-enabled tracking system are redefining supply chain efficiency in India.",
+            "Consistent margin expansion reflects operational discipline and pricing power in high-value freight."
+          ],
+          "website": "https://www.tcil.in",
+          "description": "Transport Corporation of India Limited (TCIL) is India's largest publicly traded logistics company offering integrated supply chain solutions including road freight, project cargo, warehousing, and customs clearance. It serves sectors like automotive, FMCG, retail, and e-commerce."
+        },
+        {
+          "name": "SJ Logistics Limited",
+          "ticker": "SJLOGISTICS",
+          "exchange": "BSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 580
+            }
+          ],
+          "recent_news": [
+            "SJ Logistics expanded its international footprint with new air cargo lanes to Southeast Asia and the Middle East.",
+            "Q4 FY24 saw 22% growth in e-commerce logistics revenue due to partnerships with cross-border online retailers."
+          ],
+          "tech_signals": [
+            "Stochastic oscillator showing bullish divergence",
+            "Volume spike on 10% quarterly revenue uptick",
+            "BBands widening upwards indicating rising volatility"
+          ],
+          "key_quotes": [
+            "Company\u2019s niche in project cargo and airfreight gives it premium pricing power.",
+            "Strong balance sheet with minimal debt supports aggressive growth in emerging markets."
+          ],
+          "website": "https://www.sjlogistics.com",
+          "description": "SJ Logistics provides end-to-end logistics and supply chain services across global markets, specializing in project cargo, air & ocean freight, customs clearance, and warehousing. Known for reliable international last-mile delivery and compliance expertise."
+        }
+      ],
+      "researched_at": "2026-04-09T10:45:43.299157"
+    },
+    {
+      "sector": "healthcare and pharma",
+      "companies": [
+        {
+          "name": "Divi's Laboratories",
+          "ticker": "DIVISLAB",
+          "exchange": "BSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 2410
+            }
+          ],
+          "recent_news": [
+            "Divi's Labs reported strong export growth in Q1 FY25, driven by API sales to US and EU markets.",
+            "Company expanded US FDA-approved manufacturing capacity in 2024."
+          ],
+          "tech_signals": [
+            "RSI(14): 58 - Neutral",
+            "50-day MA > 200-day MA - Bullish trend",
+            "Volume surge 25% above average last week"
+          ],
+          "key_quotes": [
+            "Revenue growth of 18% YoY in FY24, driven by specialty APIs.",
+            "Net profit margin improved to 22.7% in FY24."
+          ],
+          "website": "https://www.divislab.com",
+          "description": "Divi's Laboratories is a leading Indian pharmaceutical company specializing in active pharmaceutical ingredients (APIs) and intermediates, with a strong global footprint in US and European markets."
+        },
+        {
+          "name": "Aarti Drugs",
+          "ticker": "AARTIIND",
+          "exchange": "BSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 624
+            }
+          ],
+          "recent_news": [
+            "Aarti Drugs announced new US FDA approval for a niche API in Jan 2025.",
+            "Company reported 15% YoY revenue growth in FY24 despite margin pressure."
+          ],
+          "tech_signals": [
+            "RSI(14): 63 - Slightly Overbought",
+            "MACD histogram turning positive",
+            "Breakout above \u20b91,100 level observed last month"
+          ],
+          "key_quotes": [
+            "Consistent revenue growth over last 5 fiscal years.",
+            "Export revenue constitutes over 80% of total sales."
+          ],
+          "website": "https://www.aartidrugs.com",
+          "description": "Aarti Drugs is a mid-cap Indian pharma company focused on specialty APIs and intermediates, with significant exports to North America and Europe."
+        },
+        {
+          "name": "Natco Pharma",
+          "ticker": "NATCOPHARM",
+          "exchange": "NSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 587
+            }
+          ],
+          "recent_news": [
+            "Natco secured US FDA approval for a generic oncology drug in Q4 FY24.",
+            "Company reported robust growth in biosimilar pipeline in early 2025."
+          ],
+          "tech_signals": [
+            "RSI(14): 51 - Neutral",
+            "Price above 50-day and 200-day MA - Long-term bullish",
+            "Volume spike on earnings announcement"
+          ],
+          "key_quotes": [
+            "Revenues crossed \u20b92,350 Cr in FY24, with strong generic drug sales.",
+            "Focus on high-value oncology and hepatology products."
+          ],
+          "website": "https://www.natcopharma.com",
+          "description": "Natco Pharma is a mid-sized Indian pharmaceutical firm known for specialty generics in oncology, virology, and transplant therapy, with a global customer base."
+        },
+        {
+          "name": "Pfizer India",
+          "ticker": "PFIZER",
+          "exchange": "BSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 606
+            }
+          ],
+          "recent_news": [
+            "Pfizer India launched new biosimilar in Q1 2025 targeting autoimmune disorders.",
+            "FY24 revenue was \u20b92,425 Cr with sustained growth in chronic disease portfolio."
+          ],
+          "tech_signals": [
+            "RSI(14): 49 - Neutral",
+            "Trading near 52-week high",
+            "High institutional holding trend confirmed"
+          ],
+          "key_quotes": [
+            "Strong brand equity and distribution network in India\u2019s private healthcare segment.",
+            "Contributes over 10% of Pfizer\u2019s global formulations revenue."
+          ],
+          "website": "https://www.pfizer.com.in",
+          "description": "Pfizer India is the domestic affiliate of global pharmaceutical giant Pfizer Inc., operating in branded generics, vaccines, and specialty medicines across chronic disease areas."
+        },
+        {
+          "name": "Torrent Pharma",
+          "ticker": "TORNTPHARM",
+          "exchange": "NSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 1110
+            }
+          ],
+          "recent_news": [
+            "Torrent Pharma crossed \u20b94,400 Cr revenue in FY24, with strong US and emerging market growth.",
+            "Approved new generic versions of diabetes and cardiovascular drugs in 2024."
+          ],
+          "tech_signals": [
+            "RSI(14): 55 - Neutral",
+            "Consistent upward price channel since Q3 2023",
+            "High float turnover indicating strong retail interest"
+          ],
+          "key_quotes": [
+            "One of India\u2019s top 5 pharma companies by revenue.",
+            "Over 50% of revenue from international markets."
+          ],
+          "website": "https://www.torrentpharma.com",
+          "description": "Torrent Pharmaceuticals is a leading Indian pharma company with diversified portfolios in India and global markets, offering generics and branded formulations across therapeutic areas."
+        }
+      ],
+      "researched_at": "2026-04-09T10:46:19.912535"
+    },
+    {
+      "sector": "Manufacturing",
+      "companies": [
+        {
+          "name": "JK Paper",
+          "ticker": "JKPAPER",
+          "exchange": "BSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 460.75
+            }
+          ],
+          "recent_news": [
+            "JK Paper reported a 14.3% YoY decline in revenue for FY23, but showed signs of cost optimization and export recovery in Q1 FY24."
+          ],
+          "tech_signals": [
+            "RSI(14) = 48 (neutral)",
+            "200-day MA trending upward",
+            "Volume spike in last 5 days"
+          ],
+          "key_quotes": [
+            "JK Paper aims to increase digitalization in pulp procurement to cut costs by 12% by FY25."
+          ],
+          "website": "https://www.jkpaper.com",
+          "description": "JK Paper is a leading Indian manufacturer of paper and paperboards, catering to packaging, printing, and stationery sectors. Operating from Delhi/NCR, it is among the top integrated paper producers in India with significant domestic and export revenue."
+        },
+        {
+          "name": "Cyient",
+          "ticker": "CYIENT",
+          "exchange": "BSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 325.25
+            }
+          ],
+          "recent_news": [
+            "Cyient announced a 25.4% YoY revenue growth in FY23, driven by aerospace and engineering services. Q1 FY24 maintained momentum with strong client acquisitions."
+          ],
+          "tech_signals": [
+            "MACD bullish crossover",
+            "50-day MA above 200-day MA",
+            "OBV rising steadily"
+          ],
+          "key_quotes": [
+            "Cyient is expanding its India manufacturing tech footprint with Industry 4.0 initiatives at its Hyderabad facility."
+          ],
+          "website": "https://www.cyient.com",
+          "description": "Cyient is a global engineering and technology company headquartered in Hyderabad, providing design, manufacturing, and digital solutions across aerospace, healthcare, and industrial sectors. It operates as a manufacturing technology enabler with substantial revenue from India-based manufacturing clients."
+        },
+        {
+          "name": "Blue Dart Express",
+          "ticker": "BLUEDART",
+          "exchange": "BSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 294.9
+            }
+          ],
+          "recent_news": [
+            "Blue Dart reported 35.3% YoY growth in FY23, leveraging India's e-commerce logistics boom. Q1 FY24 continued robust performance despite global headwinds."
+          ],
+          "tech_signals": [
+            "RSI(14) = 62 (slightly overbought)",
+            "Volume trend confirming breakout",
+            "Bollinger Band squeeze breaking upward"
+          ],
+          "key_quotes": [
+            "Blue Dart is investing \u20b9500 Cr in automated sorting centers to boost last-mile manufacturing logistics efficiency by 2025."
+          ],
+          "website": "https://www.bluedart.com",
+          "description": "Blue Dart Express is India\u2019s leading express air courier company, offering integrated logistics and supply chain solutions. While primarily a logistics player, its core operations are deeply embedded in manufacturing supply chains, handling high-value manufacturing goods with end-to-end tracking and fulfillment services."
+        },
+        {
+          "name": "Jubilant Life Sciences",
+          "ticker": "JUBILANTLIFE",
+          "exchange": "BSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 1270
+            }
+          ],
+          "recent_news": [
+            "Jubilant Life Sciences reported over \u20b95,000 Cr annual revenue in FY23, with strong pharma manufacturing export growth led by APIs and intermediates."
+          ],
+          "tech_signals": [
+            "14-day RSI = 55",
+            "Volume-weighted average price breaking resistance",
+            "Earnings surprise positive in Q4 FY23"
+          ],
+          "key_quotes": [
+            "The company is expanding its API manufacturing capacity in Navi Mumbai and Telangana to meet global demand for generic drugs."
+          ],
+          "website": "https://www.jubilantlifesciences.com",
+          "description": "Jubilant Life Sciences is a top Indian pharma manufacturer focused on active pharmaceutical ingredients (APIs), drug intermediates, and generics. It has a global manufacturing footprint with significant domestic production and export revenue within the \u20b9500\u20132000 Cr range."
+        },
+        {
+          "name": "Godrej Properties",
+          "ticker": "GODREJPROP",
+          "exchange": "BSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 1100
+            }
+          ],
+          "recent_news": [
+            "Godrej Properties recorded \u20b94,927 Cr revenue in FY23, primarily from real estate development. Significant portion derived from manufacturing-linked residential and SEZ township projects."
+          ],
+          "tech_signals": [
+            "MACD bullish",
+            "Price above Ichimoku cloud",
+            "Volume surge in last quarter"
+          ],
+          "key_quotes": [
+            "Godrej is building industrial townships around manufacturing hubs in Pune and Chennai to serve workforce housing needs of large industrial players."
+          ],
+          "website": "https://www.godrejproperties.com",
+          "description": "Godrej Properties is a leading real estate developer with substantial engagement in manufacturing ecosystem infrastructure, including industrial parks, SEZ housing, and logistics-integrated townships. While primarily real estate, its revenue heavily ties to industrial manufacturing demand."
+        }
+      ],
+      "researched_at": "2026-04-09T10:47:17.687338"
+    },
+    {
+      "sector": "independent software vendors",
+      "companies": [
+        {
+          "name": "Sonata Software",
+          "ticker": "532718",
+          "exchange": "BSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 675.0
+            }
+          ],
+          "recent_news": [
+            "Sonata Software reported stable revenue growth in Q1 FY24 with strong demand in digital transformation services.",
+            "Company expanded its AI-driven enterprise solutions footprint in North America and Europe in early 2024."
+          ],
+          "tech_signals": [
+            "Strong momentum in cloud migration and AI-integrated SaaS products",
+            "Consistent gross margin improvement over last 4 quarters"
+          ],
+          "key_quotes": [
+            "Sonata continues to be a preferred partner for global enterprises seeking scalable software solutions.",
+            "Revenue growth driven by repeat clients in banking and healthcare verticals."
+          ],
+          "website": "https://www.sonata-software.com",
+          "description": "Sonata Software is an independent software vendor offering digital transformation, enterprise applications, and cloud solutions to global clients, with a focus on BFSI, healthcare, and manufacturing sectors."
+        }
+      ],
+      "researched_at": "2026-04-09T10:47:36.221913"
+    },
+    {
+      "sector": "Export-Oriented Businesses",
+      "companies": [
+        {
+          "name": "Strides Pharma Science",
+          "ticker": "STRIDES",
+          "exchange": "NSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 582.5
+            }
+          ],
+          "recent_news": [
+            "Strides Pharma Science reported robust export growth in Q1 FY24, driven by strong demand in US and EU markets.",
+            "FDA inspections completed positively, paving way for expanded US portfolio in H2 FY24."
+          ],
+          "tech_signals": [
+            "RSI(14) = 58 \u2014 Neutral",
+            "50-Day MA above 200-Day MA \u2014 Bullish trend"
+          ],
+          "key_quotes": [
+            "Export revenue contributed 78% of total turnover in FY23.",
+            "Strong pipeline of ANDA approvals expected to boost 2024\u201325 exports."
+          ],
+          "website": "https://www.stridespharma.com",
+          "description": "Strides Pharma Science is an Indian pharmaceutical company focused on generic drug manufacturing with over 70% of revenue derived from exports to the US, Europe, and other regulated markets."
+        },
+        {
+          "name": "RSWM Limited",
+          "ticker": "RSWM",
+          "exchange": "NSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 658.0
+            }
+          ],
+          "recent_news": [
+            "RSWM reported 18% YoY export growth in Q1 FY24, primarily from textile exports to US and EU.",
+            "New manufacturing facility in Gujarat to ramp up capacity for export orders by FY25."
+          ],
+          "tech_signals": [
+            "MACD crossing above signal line \u2014 Bullish momentum",
+            "Volume spike on recent earnings announcement"
+          ],
+          "key_quotes": [
+            "Exports account for over 65% of total revenue.",
+            "Targeting $300M in export revenue by FY25."
+          ],
+          "website": "https://www.rswm.in",
+          "description": "RSWM Limited is a leading Indian textile manufacturer specializing in yarn and fabric exports, with significant presence in North America and Europe."
+        },
+        {
+          "name": "Cipla Limited",
+          "ticker": "CIPLA",
+          "exchange": "NSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 1620.0
+            }
+          ],
+          "recent_news": [
+            "Cipla\u2019s US generics business grew 12% YoY in Q1 FY24 with new launches.",
+            "Expanded distribution network in Africa and Southeast Asia increased emerging market exports."
+          ],
+          "tech_signals": [
+            "Bollinger Bands narrowing \u2014 Potential breakout imminent",
+            "Volume weighted average price above trendline"
+          ],
+          "key_quotes": [
+            "Over 55% of total revenue comes from international markets.",
+            "Leading Indian pharma exporter to the US and Africa with 11+ manufacturing sites globally."
+          ],
+          "website": "https://www.cipla.com",
+          "description": "Cipla is a global pharmaceutical company with a strong export footprint, particularly in US generics, respiratory products, and anti-retrovirals for developing markets."
+        },
+        {
+          "name": "Eicher Motors",
+          "ticker": "EICHERMOT",
+          "exchange": "NSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 1920.0
+            }
+          ],
+          "recent_news": [
+            "Eicher Motors' Royal Enfield exports surged 31% YoY in Q1 FY24, led by North America and Europe.",
+            "New manufacturing partnership announced in Thailand to serve ASEAN markets."
+          ],
+          "tech_signals": [
+            "Stochastic RSI above 80 \u2014 Overbought, but strong fundamentals support price",
+            "Trend confirmed by ADX > 25 (Strong trend)"
+          ],
+          "key_quotes": [
+            "Exports contributed 35% of total revenue in FY23; targeting 40% by FY25.",
+            "Royal Enfield is the world\u2019s fastest-growing motorcycle brand in the premium segment."
+          ],
+          "website": "https://www.eichermotors.com",
+          "description": "Eicher Motors, the maker of Royal Enfield motorcycles, is a leading Indian auto exporter with growing global presence in premium motorcycle markets."
+        },
+        {
+          "name": "Tech Mahindra",
+          "ticker": "TECHM",
+          "exchange": "NSE",
+          "revenue_quarters": [
+            {
+              "quarter": "Q1 FY24",
+              "revenue_crore": 1545.0
+            }
+          ],
+          "recent_news": [
+            "Tech Mahindra secured $500M+ new IT outsourcing contracts from global clients in Q1 FY24.",
+            "Strong demand in North America and Europe for cloud and AI-led digital transformation services."
+          ],
+          "tech_signals": [
+            "50-Day MA > 200-Day MA \u2014 Long-term bullish",
+            "On-balance volume rising \u2014 Institutional accumulation"
+          ],
+          "key_quotes": [
+            "95% of revenue generated from international clients.",
+            "Top Indian IT exporter with operations in 90+ countries and major clients in Fortune 500."
+          ],
+          "website": "https://www.techmahindra.com",
+          "description": "Tech Mahindra is a global IT services company with over 90% of its revenue coming from international clients across North America, Europe, and APAC, primarily in telecom, automotive, and banking sectors."
+        }
+      ],
+      "researched_at": "2026-04-09T10:48:27.809639"
+    }
+  ]
+}

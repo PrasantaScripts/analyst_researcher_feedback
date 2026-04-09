@@ -1,0 +1,136 @@
+{
+  "sector": "healthcare and pharma",
+  "companies": [
+    {
+      "name": "Divi's Laboratories",
+      "ticker": "DIVISLAB",
+      "exchange": "BSE",
+      "revenue_quarters": [
+        {
+          "quarter": "Q1 FY24",
+          "revenue_crore": 2410
+        }
+      ],
+      "recent_news": [
+        "Divi's Labs reported strong export growth in Q1 FY25, driven by API sales to US and EU markets.",
+        "Company expanded US FDA-approved manufacturing capacity in 2024."
+      ],
+      "tech_signals": [
+        "RSI(14): 58 - Neutral",
+        "50-day MA > 200-day MA - Bullish trend",
+        "Volume surge 25% above average last week"
+      ],
+      "key_quotes": [
+        "Revenue growth of 18% YoY in FY24, driven by specialty APIs.",
+        "Net profit margin improved to 22.7% in FY24."
+      ],
+      "website": "https://www.divislab.com",
+      "description": "Divi's Laboratories is a leading Indian pharmaceutical company specializing in active pharmaceutical ingredients (APIs) and intermediates, with a strong global footprint in US and European markets."
+    },
+    {
+      "name": "Aarti Drugs",
+      "ticker": "AARTIIND",
+      "exchange": "BSE",
+      "revenue_quarters": [
+        {
+          "quarter": "Q1 FY24",
+          "revenue_crore": 624
+        }
+      ],
+      "recent_news": [
+        "Aarti Drugs announced new US FDA approval for a niche API in Jan 2025.",
+        "Company reported 15% YoY revenue growth in FY24 despite margin pressure."
+      ],
+      "tech_signals": [
+        "RSI(14): 63 - Slightly Overbought",
+        "MACD histogram turning positive",
+        "Breakout above \u20b91,100 level observed last month"
+      ],
+      "key_quotes": [
+        "Consistent revenue growth over last 5 fiscal years.",
+        "Export revenue constitutes over 80% of total sales."
+      ],
+      "website": "https://www.aartidrugs.com",
+      "description": "Aarti Drugs is a mid-cap Indian pharma company focused on specialty APIs and intermediates, with significant exports to North America and Europe."
+    },
+    {
+      "name": "Natco Pharma",
+      "ticker": "NATCOPHARM",
+      "exchange": "NSE",
+      "revenue_quarters": [
+        {
+          "quarter": "Q1 FY24",
+          "revenue_crore": 587
+        }
+      ],
+      "recent_news": [
+        "Natco secured US FDA approval for a generic oncology drug in Q4 FY24.",
+        "Company reported robust growth in biosimilar pipeline in early 2025."
+      ],
+      "tech_signals": [
+        "RSI(14): 51 - Neutral",
+        "Price above 50-day and 200-day MA - Long-term bullish",
+        "Volume spike on earnings announcement"
+      ],
+      "key_quotes": [
+        "Revenues crossed \u20b92,350 Cr in FY24, with strong generic drug sales.",
+        "Focus on high-value oncology and hepatology products."
+      ],
+      "website": "https://www.natcopharma.com",
+      "description": "Natco Pharma is a mid-sized Indian pharmaceutical firm known for specialty generics in oncology, virology, and transplant therapy, with a global customer base."
+    },
+    {
+      "name": "Pfizer India",
+      "ticker": "PFIZER",
+      "exchange": "BSE",
+      "revenue_quarters": [
+        {
+          "quarter": "Q1 FY24",
+          "revenue_crore": 606
+        }
+      ],
+      "recent_news": [
+        "Pfizer India launched new biosimilar in Q1 2025 targeting autoimmune disorders.",
+        "FY24 revenue was \u20b92,425 Cr with sustained growth in chronic disease portfolio."
+      ],
+      "tech_signals": [
+        "RSI(14): 49 - Neutral",
+        "Trading near 52-week high",
+        "High institutional holding trend confirmed"
+      ],
+      "key_quotes": [
+        "Strong brand equity and distribution network in India\u2019s private healthcare segment.",
+        "Contributes over 10% of Pfizer\u2019s global formulations revenue."
+      ],
+      "website": "https://www.pfizer.com.in",
+      "description": "Pfizer India is the domestic affiliate of global pharmaceutical giant Pfizer Inc., operating in branded generics, vaccines, and specialty medicines across chronic disease areas."
+    },
+    {
+      "name": "Torrent Pharma",
+      "ticker": "TORNTPHARM",
+      "exchange": "NSE",
+      "revenue_quarters": [
+        {
+          "quarter": "Q1 FY24",
+          "revenue_crore": 1110
+        }
+      ],
+      "recent_news": [
+        "Torrent Pharma crossed \u20b94,400 Cr revenue in FY24, with strong US and emerging market growth.",
+        "Approved new generic versions of diabetes and cardiovascular drugs in 2024."
+      ],
+      "tech_signals": [
+        "RSI(14): 55 - Neutral",
+        "Consistent upward price channel since Q3 2023",
+        "High float turnover indicating strong retail interest"
+      ],
+      "key_quotes": [
+        "One of India\u2019s top 5 pharma companies by revenue.",
+        "Over 50% of revenue from international markets."
+      ],
+      "website": "https://www.torrentpharma.com",
+      "description": "Torrent Pharmaceuticals is a leading Indian pharma company with diversified portfolios in India and global markets, offering generics and branded formulations across therapeutic areas."
+    }
+  ],
+  "researched_at": "2026-04-09T10:46:19.912535"
+}

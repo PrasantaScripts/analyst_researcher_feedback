@@ -1,0 +1,944 @@
+{
+  "analysed_at": "2026-04-09T10:48:27.946252",
+  "sectors": [
+    {
+      "sector": "travel logistics and supply chain",
+      "sector_summary": "Both companies are expanding in e-logistics and international supply chains, with strong revenue growth and emerging tech adoption signals. Neither shows explicit IT/software investment keywords, but bullish technical indicators and strategic expansions imply imminent technology upgrades to support scale.",
+      "scored_companies": [
+        {
+          "name": "Transport Corporation of India Limited",
+          "ticker": "TCIL",
+          "sector": "travel logistics and supply chain",
+          "score": 85,
+          "rank": 1,
+          "growth_trend": "growing",
+          "top_signals": [
+            "digital transformation",
+            "automation",
+            "cloud migration",
+            "ERP implementation"
+          ],
+          "reasoning": "18.3% YoY revenue growth driven by e-logistics expansion and strategic e-commerce partnerships strongly indicate need for scalable IT infrastructure. While no explicit tech keywords appear in news, technical indicators (bullish MACD, MA crossover) suggest operational modernization is underway. Large logistics player with national footprint implies pressing need for ERP, automation, and cloud-based tracking systems to support growth.",
+          "recommended_approach": "Offer modular ERP and AI-powered route optimization solutions with phased cloud migration support tailored for mid-to-large logistics firms.",
+          "outreach_angle": "Help TCIL scale its e-logistics segment with AI-driven last-mile automation and real-time cargo tracking on scalable cloud platforms.",
+          "risk_factors": [
+            "Limited explicit tech keywords in press releases",
+            "Potential internal resistance to cloud adoption in legacy logistics systems"
+          ],
+          "revenue_growth_pct": 18.3,
+          "description": "Transport Corporation of India Limited (TCIL) is India's largest publicly traded logistics company offering integrated s",
+          "website": "https://www.tcil.in",
+          "global_rank": 10
+        },
+        {
+          "name": "SJ Logistics Limited",
+          "ticker": "SJLOGISTICS",
+          "sector": "travel logistics and supply chain",
+          "score": 78,
+          "rank": 2,
+          "growth_trend": "growing",
+          "top_signals": [
+            "automation",
+            "data platform",
+            "technology upgrade",
+            "capacity expansion"
+          ],
+          "reasoning": "22% growth in e-commerce logistics revenue from cross-border partnerships signals urgent need for international trade tech \u2014 customs automation, real-time data platforms, and integration with global retail systems. Bullish Stochastic and widening Bollinger Bands reflect accelerating growth, likely requiring IT upgrades for global connectivity and visibility. Though no direct tech keyword is stated, expansion into Southeast Asia and Middle East demands scalable logistics software.",
+          "recommended_approach": "Pitch integrated global logistics software with AI-based customs compliance, multi-currency tracking, and API connections to cross-border e-commerce platforms.",
+          "outreach_angle": "Enable SJ Logistics\u2019 global expansion with a unified digital logistics platform that automates cross-border operations and connects directly to your retail partners.",
+          "risk_factors": [
+            "No mention of new CTO or formal IT initiative",
+            "Potential bandwidth constraints to manage international tech integrations"
+          ],
+          "revenue_growth_pct": 22,
+          "description": "SJ Logistics provides end-to-end logistics and supply chain services across global markets, specializing in project carg",
+          "website": "https://www.sjlogistics.com",
+          "global_rank": 16
+        }
+      ]
+    },
+    {
+      "sector": "healthcare and pharma",
+      "sector_summary": "All five companies are expanding globally with FDA approvals, API/generic drug growth, and pipeline expansion \u2014 creating high urgency for digital transformation in manufacturing compliance, supply chain traceability, and data-driven R&D. While none explicitly mention IT terms, regulatory demands (21 CFR Part 11, EU GMP), capacity scaling, and global trade complexity strongly imply need for ERP, automation, cloud-based quality systems, and AI-driven analytics.",
+      "scored_companies": [
+        {
+          "name": "Divi's Laboratories",
+          "ticker": "DIVISLAB",
+          "sector": "healthcare and pharma",
+          "score": 92,
+          "rank": 1,
+          "growth_trend": "growing",
+          "top_signals": [
+            "digital transformation",
+            "automation",
+            "ERP implementation",
+            "data platform",
+            "technology upgrade"
+          ],
+          "reasoning": "Rapid export growth to regulated US/EU markets + expanded FDA-approved manufacturing capacity demands end-to-end digital compliance (21 CFR Part 11), batch traceability, and integrated ERP. Strong technical momentum (MA crossover, volume spike) indicates strategic scaling \u2014 highly likely to invest in AI-driven process optimization and cloud-based quality management systems to maintain regulatory alignment.",
+          "recommended_approach": "Propose integrated GxP-compliant ERP and digital manufacturing platform with AI-based predictive quality control for API production.",
+          "outreach_angle": "Help Divi's scale US/EU exports with a fully audit-ready digital quality and compliance platform that automates documentation and reduces FDA observation risks.",
+          "risk_factors": [
+            "No public mention of new CTO or IT leadership hire",
+            "Legacy systems may hinder rapid cloud migration"
+          ],
+          "revenue_growth_pct": 19.2,
+          "description": "Divi's Laboratories is a leading Indian pharmaceutical company specializing in active pharmaceutical ingredients (APIs) ",
+          "website": "https://www.divislab.com",
+          "global_rank": 3
+        },
+        {
+          "name": "Torrent Pharma",
+          "ticker": "TORNTPHARM",
+          "sector": "healthcare and pharma",
+          "score": 90,
+          "rank": 2,
+          "growth_trend": "growing",
+          "top_signals": [
+            "digital transformation",
+            "ERP implementation",
+            "cloud migration",
+            "capacity expansion"
+          ],
+          "reasoning": "Crossed \u20b94,400 Cr revenue with global growth implies complex supply chain and regulatory tracking needs. Expansion into US and emerging markets requires unified digital platforms for inventory, compliance, and distributor management. Consistent upward price trend and high retail turnover signal strong investor confidence \u2014 likely fueling tech investments to support operational scale.",
+          "recommended_approach": "Offer end-to-end pharma ERP with integrated global trade compliance, serialization, and cloud-based warehouse management.",
+          "outreach_angle": "Enable Torrent\u2019s global expansion with a single platform connecting manufacturing, distribution, and regulatory reporting across 50+ markets.",
+          "risk_factors": [
+            "Large org may have entrenched legacy systems",
+            "Slow procurement cycle in public pharma entities"
+          ],
+          "revenue_growth_pct": 17.8,
+          "description": "Torrent Pharmaceuticals is a leading Indian pharma company with diversified portfolios in India and global markets, offe",
+          "website": "https://www.torrentpharma.com",
+          "global_rank": 5
+        },
+        {
+          "name": "Pfizer India",
+          "ticker": "PFIZER",
+          "sector": "healthcare and pharma",
+          "score": 87,
+          "rank": 3,
+          "growth_trend": "growing",
+          "top_signals": [
+            "AI adoption",
+            "technology upgrade",
+            "data platform",
+            "IT modernization"
+          ],
+          "reasoning": "As a subsidiary of global pharma leader Pfizer, this entity likely inherits advanced digital standards. Launch of biosimilars and chronic disease portfolio growth requires robust data platforms for pharmacovigilance, demand forecasting, and real-time supply chain visibility. High institutional holding and trading near 52-week high suggest strategic investment readiness.",
+          "recommended_approach": "Pitch AI-enabled pharmacovigilance analytics and integrated digital commercialization suite aligned with Pfizer global IT standards.",
+          "outreach_angle": "Leverage Pfizer\u2019s global tech DNA to deploy real-time AI-driven market intelligence and patient data analytics for your India portfolio expansion.",
+          "risk_factors": [
+            "High internal IT capability may reduce vendor reliance",
+            "Corporate procurement may be slow or centralized"
+          ],
+          "revenue_growth_pct": 12.1,
+          "description": "Pfizer India is the domestic affiliate of global pharmaceutical giant Pfizer Inc., operating in branded generics, vaccin",
+          "website": "https://www.pfizer.co.in",
+          "global_rank": 8
+        },
+        {
+          "name": "Natco Pharma",
+          "ticker": "NATCOPHARM",
+          "sector": "healthcare and pharma",
+          "score": 83,
+          "rank": 4,
+          "growth_trend": "growing",
+          "top_signals": [
+            "digital transformation",
+            "automation",
+            "data platform",
+            "technology upgrade"
+          ],
+          "reasoning": "Robust biosimilar pipeline growth and FDA approval for oncology generics signal need for scalable IT systems to manage product lifecycle, batch tracking, and clinical-data integration. Neutral RSI and MA crossover suggest operational maturity \u2014 an ideal time for tech modernization to support regulatory compliance and commercial scale.",
+          "recommended_approach": "Propose cloud-based QMS and digital batch record systems designed for oncology and biosimilar manufacturing.",
+          "outreach_angle": "Accelerate your biosimilar launch timeline with automated documentation and integrated regulatory data platforms that reduce approval delays.",
+          "risk_factors": [
+            "Smaller scale may limit IT budget autonomy",
+            "Focus on R&D may delay operational tech investments"
+          ],
+          "revenue_growth_pct": 14.6,
+          "description": "Natco Pharma is a mid-sized Indian pharmaceutical firm known for specialty generics in oncology, virology, and transplan",
+          "website": "https://www.natcopharma.com",
+          "global_rank": 12
+        },
+        {
+          "name": "Aarti Drugs",
+          "ticker": "AARTIIND",
+          "sector": "healthcare and pharma",
+          "score": 79,
+          "rank": 5,
+          "growth_trend": "growing",
+          "top_signals": [
+            "automation",
+            "technology upgrade",
+            "ERP implementation"
+          ],
+          "reasoning": "15% YoY revenue growth despite margin pressure indicates efficiency-driven scaling. New FDA approval signals need for compliant digital systems, but limited news depth and absence of strategic partnerships suggest phased tech adoption. MACD turning positive and breakout above \u20b91,100 indicate upside potential \u2014 likely preparing for next growth phase with light IT modernization.",
+          "recommended_approach": "Offer modular, low-cost digital compliance suite for small-to-mid pharma: automated batch recording, inventory tracking, and export documentation.",
+          "outreach_angle": "Turn FDA approval into operational advantage with affordable, fast-deploy digital tools that reduce compliance costs and boost export readiness.",
+          "risk_factors": [
+            "Margin pressure may constrain tech investment",
+            "Limited public visibility on strategic tech roadmap"
+          ],
+          "revenue_growth_pct": 15,
+          "description": "Aarti Drugs is a mid-cap Indian pharma company focused on specialty APIs and intermediates, with significant exports to ",
+          "website": "https://www.aartidrugs.com",
+          "global_rank": 15
+        }
+      ]
+    },
+    {
+      "sector": "Manufacturing",
+      "sector_summary": "All five companies operate in capital-intensive, supply chain-dependent manufacturing or manufacturing-adjacent sectors. Revenue growth, export expansion, and operational scalability are primary drivers \u2014 creating strong demand for digital transformation in ERP, automation, IoT-enabled production, and cloud-based supply chain visibility. Companies with double-digit growth and global export exposure show highest IT buy-likelihood, particularly where regulatory, quality, or logistics complexity increases with scale.",
+      "scored_companies": [
+        {
+          "name": "Cyient",
+          "ticker": "CYIENT",
+          "sector": "Manufacturing",
+          "score": 94,
+          "rank": 1,
+          "growth_trend": "growing",
+          "top_signals": [
+            "digital transformation",
+            "automation",
+            "ERP implementation",
+            "cloud migration",
+            "technology upgrade"
+          ],
+          "reasoning": "25.4% YoY revenue growth in aerospace and engineering services indicates high-value, complex manufacturing and design workflows. As a technology company serving global OEMs, Cyient must deploy integrated digital twin platforms, cloud-based PLM/ERP, and AI-driven predictive maintenance to meet client SLAs. Technical signals (MACD crossover, rising OBV) reflect strong investor confidence and operational momentum \u2014 prime conditions for strategic IT investment.",
+          "recommended_approach": "Offer end-to-end digital manufacturing suite: Siemens/PTC-integrated PLM, IoT-enabled shop floor monitoring, and cloud ERP for global engineering projects.",
+          "outreach_angle": "Help Cyient scale its aerospace and engineering services with a unified digital thread that connects design, production, and quality data across global clients.",
+          "risk_factors": [],
+          "revenue_growth_pct": 25.4,
+          "description": "Cyient is a global engineering and technology company headquartered in Hyderabad, providing design, manufacturing, and d",
+          "website": "https://www.cyient.com",
+          "global_rank": 1
+        },
+        {
+          "name": "Blue Dart Express",
+          "ticker": "BLUEDART",
+          "sector": "Manufacturing",
+          "score": 89,
+          "rank": 2,
+          "growth_trend": "growing",
+          "top_signals": [
+            "automation",
+            "data platform",
+            "AI adoption",
+            "ERP implementation",
+            "technology upgrade"
+          ],
+          "reasoning": "35.3% YoY growth fueled by e-commerce logistics demands real-time tracking, dynamic routing, automated warehousing, and predictive delivery analytics. A high-volume logistics operator must have advanced data platforms for shipment orchestration and AI-based capacity optimization. Bullish breakout signals indicate active scaling \u2014 a clear trigger for investment in logistics software and warehouse automation tools.",
+          "recommended_approach": "Pitch AI-powered logistics orchestration platform with automated sorting, route optimization, and real-time tracking integration.",
+          "outreach_angle": "Turn India\u2019s e-commerce boom into operational advantage with an intelligent, self-optimizing logistics network that cuts delays and improves margins.",
+          "risk_factors": [
+            "High dependency on third-party integrations (e-commerce platforms)",
+            "Legacy sorting facilities may resist automation"
+          ],
+          "revenue_growth_pct": 35.3,
+          "description": "Blue Dart Express is India\u2019s leading express air courier company, offering integrated logistics and supply chain solutio",
+          "website": "https://www.bluedart.com",
+          "global_rank": 6
+        },
+        {
+          "name": "Jubilant Life Sciences",
+          "ticker": "JUBILANTLIFE",
+          "sector": "Manufacturing",
+          "score": 87,
+          "rank": 3,
+          "growth_trend": "growing",
+          "top_signals": [
+            "digital transformation",
+            "automation",
+            "ERP implementation",
+            "data platform",
+            "technology upgrade"
+          ],
+          "reasoning": "Over \u20b95,000 Cr revenue with API export growth implies complex, regulated pharmaceutical manufacturing. Requires GxP-compliant batch traceability, automated quality control, and integrated ERP for raw material to finished product end-to-end. Positive earnings surprise and volume breakout suggest capacity expansion is underway \u2014 highly likely to invest in Industry 4.0 tools to reduce compliance risk and scale output.",
+          "recommended_approach": "Propose pharma-specific MES and cloud-based ERP with 21 CFR Part 11 compliance, AI-driven yield prediction, and automated audit trails.",
+          "outreach_angle": "Secure global API exports with a fully audit-ready digital manufacturing platform that automates compliance and boosts throughput without adding headcount.",
+          "risk_factors": [
+            "Stringent regulatory environment slows vendor onboarding",
+            "Legacy batch record systems may be deeply entrenched"
+          ],
+          "revenue_growth_pct": 21.8,
+          "description": "Jubilant Life Sciences is a top Indian pharma manufacturer focused on active pharmaceutical ingredients (APIs), drug int",
+          "website": "https://www.jubilant.com",
+          "global_rank": 9
+        },
+        {
+          "name": "Godrej Properties",
+          "ticker": "GODREJPROP",
+          "sector": "Manufacturing",
+          "score": 78,
+          "rank": 4,
+          "growth_trend": "growing",
+          "top_signals": [
+            "technology upgrade",
+            "data platform",
+            "ERP implementation",
+            "capacity expansion"
+          ],
+          "reasoning": "\u20b94,927 Cr revenue from manufacturing-linked SEZ and residential projects implies complex supply chain and vendor coordination. As a developer embedded in manufacturing ecosystems, Godrej requires integrated ERP for procurement, subcontractor management, and real-time project tracking. Bullish technical signals reflect market confidence \u2014 likely to upgrade systems to manage scale and reduce delay risks.",
+          "recommended_approach": "Offer construction and infrastructure ERP with vendor portal, procurement automation, and real-time site progress dashboards.",
+          "outreach_angle": "Streamline your manufacturing-linked real estate projects with a single platform connecting suppliers, contractors, and site operations for zero-delay delivery.",
+          "risk_factors": [
+            "Real estate development cycles are long \u2014 tech ROI harder to justify",
+            "Decentralized project teams may hinder platform adoption"
+          ],
+          "revenue_growth_pct": 18.5,
+          "description": "Godrej Properties is a leading real estate developer with substantial engagement in manufacturing ecosystem infrastructu",
+          "website": "https://www.godrejproperties.com",
+          "global_rank": 17
+        },
+        {
+          "name": "JK Paper",
+          "ticker": "JKPAPER",
+          "sector": "Manufacturing",
+          "score": 72,
+          "rank": 5,
+          "growth_trend": "recovering",
+          "top_signals": [
+            "automation",
+            "technology upgrade",
+            "ERP implementation"
+          ],
+          "reasoning": "14.3% YoY revenue decline in FY23 signals recent headwinds, but Q1 FY24 export recovery and upward 200-day MA trend indicate stabilization. As a paperboard manufacturer, core needs are inventory optimization, energy efficiency, and production automation \u2014 all within ERP or IIoT scope. Volume spike suggests renewed investor interest \u2014 a catalyst for cost-reduction tech investments. However, past decline implies constrained capex, making tech adoption cautious and phased.",
+          "recommended_approach": "Propose low-cost IIoT sensors for energy monitoring and automated paper machine performance tracking with modular ERP integration.",
+          "outreach_angle": "Turn your recovery into efficiency gains with smart factory tools that reduce energy waste and improve machine uptime \u2014 without big capex.",
+          "risk_factors": [
+            "Recent revenue decline limits discretionary tech budget",
+            "Industry-wide margin pressure may delay digital transformation"
+          ],
+          "revenue_growth_pct": -14.3,
+          "description": "JK Paper is a leading Indian manufacturer of paper and paperboards, catering to packaging, printing, and stationery sect",
+          "website": "https://www.jkpaper.com",
+          "global_rank": 18
+        }
+      ]
+    },
+    {
+      "sector": "independent software vendors",
+      "sector_summary": "Sonata Software operates as a digital transformation enabler itself \u2014 meaning it\u2019s a product and solution provider, not a buyer of enterprise IT software. However, as an ISV scaling globally with AI and SaaS offerings, it still requires robust internal IT infrastructure for product delivery, cloud operations, cybersecurity, and data analytics \u2014 creating a clear, albeit nuanced, need for high-end vendor tools and platforms.",
+      "scored_companies": [
+        {
+          "name": "Sonata Software",
+          "ticker": "532718",
+          "sector": "independent software vendors",
+          "score": 82,
+          "rank": 1,
+          "growth_trend": "growing",
+          "top_signals": [
+            "cloud migration",
+            "AI adoption",
+            "IT modernization",
+            "data platform",
+            "technology upgrade"
+          ],
+          "reasoning": "Sonata is a product-led ISV expanding its AI-driven SaaS footprint in North America and Europe \u2014 requiring enterprise-grade internal systems: scalable cloud infrastructure (AWS/Azure), secure CI/CD pipelines, data lakes for client analytics, and cybersecurity compliance tools (SOC 2, ISO 27001). Strong gross margin improvement signals operational efficiency focus \u2014 likely driving investment in automated DevOps, AI-powered support platforms, and integrated CRM/ERP for client lifecycle management. As a technology vendor, it does not buy ERP for manufacturing but invests heavily in enabling tech for its own product delivery.",
+          "recommended_approach": "Pitch cloud-native DevSecOps platforms, AI-driven customer success analytics, and enterprise SaaS billing/subscription platforms tailored for global ISVs.",
+          "outreach_angle": "Help Sonata scale its global SaaS delivery with automated, secure, and observable infrastructure that reduces downtime, accelerates releases, and improves client retention \u2014 the engine behind your growth.",
+          "risk_factors": [
+            "Internal tech stack may be already mature and vendor-locked",
+            "Prioritization may favor client-facing over internal tooling investments"
+          ],
+          "revenue_growth_pct": 8.7,
+          "description": "Sonata Software is an independent software vendor offering digital transformation, enterprise applications, and cloud so",
+          "website": "https://www.sonatasw.com",
+          "global_rank": 13
+        }
+      ]
+    },
+    {
+      "sector": "Export-Oriented Businesses",
+      "sector_summary": "All five companies are export-driven with strong growth in regulated markets (US, EU) and emerging regions (Africa, ASEAN). Their global footprint demands complex supply chain visibility, compliance automation, cross-border logistics integration, and scalable IT systems for quality control, order fulfillment, and customer reporting. Companies with multi-market expansion and regulatory milestones (FDA, customs) show the highest urgency for IT/software investments to automate compliance, reduce operational friction, and improve global agility.",
+      "scored_companies": [
+        {
+          "name": "Eicher Motors",
+          "ticker": "EICHERMOT",
+          "sector": "Export-Oriented Businesses",
+          "score": 93,
+          "rank": 1,
+          "growth_trend": "growing",
+          "top_signals": [
+            "digital transformation",
+            "automation",
+            "ERP implementation",
+            "cloud migration",
+            "technology upgrade"
+          ],
+          "reasoning": "31% YoY export surge in North America and Europe, coupled with a new ASEAN manufacturing partnership, creates urgent need for global supply chain orchestration, real-time inventory visibility, and compliance integration (C-TPAT, customs codes). Royal Enfield\u2019s premium global brand requires high-touch digital customer platforms, IoT-enabled vehicle data tracking, and integrated ERP for cross-border manufacturing coordination. Strong ADX and overbought Stochastic reflect aggressive scaling \u2014 classic trigger for strategic IT modernization.",
+          "recommended_approach": "Propose end-to-end global manufacturing ERP with IoT integration for vehicle traceability, automated customs documentation, and multi-currency B2B customer portal.",
+          "outreach_angle": "Scale your global motorcycle exports with a unified digital backbone that connects factories, distributors, and regulators in real time \u2014 turning logistics complexity into competitive advantage.",
+          "risk_factors": [
+            "Complex global regulatory landscape may slow software adoption",
+            "High brand premium may lead to in-house tech development over vendor solutions"
+          ],
+          "revenue_growth_pct": 31,
+          "description": "Eicher Motors, the maker of Royal Enfield motorcycles, is a leading Indian auto exporter with growing global presence in",
+          "website": "https://www.eichermotors.com",
+          "global_rank": 2
+        },
+        {
+          "name": "Tech Mahindra",
+          "ticker": "TECHM",
+          "sector": "Export-Oriented Businesses",
+          "score": 91,
+          "rank": 2,
+          "growth_trend": "growing",
+          "top_signals": [
+            "AI adoption",
+            "cloud migration",
+            "digital transformation",
+            "data platform",
+            "IT modernization"
+          ],
+          "reasoning": "As a global IT services firm deriving >90% revenue from international clients, Tech Mahindra is both a service provider and a tech customer. Securing $500M+ new contracts means it must scale its own delivery platforms: AI-powered service orchestration, global cybersecurity frameworks, data lakes for client analytics, and automated resource allocation systems. Rising OBV and MA crossover indicate scaling confidence \u2014 its own tech stack must evolve to deliver on client promises.",
+          "recommended_approach": "Pitch AI-driven IT service automation suites, global cybersecurity compliance platforms, and embedded analytics dashboards for enterprise delivery teams.",
+          "outreach_angle": "Help Tech Mahindra exceed client SLAs with an intelligent internal delivery engine that predicts resource bottlenecks, automates QA, and visualizes global project health in real time.",
+          "risk_factors": [
+            "Large internal tech team may prefer building vs. buying",
+            "High vendor lock-in risk due to existing legacy delivery platforms"
+          ],
+          "revenue_growth_pct": 15.8,
+          "description": "Tech Mahindra is a global IT services company with over 90% of its revenue coming from international clients across Nort",
+          "website": "https://www.techmahindra.com",
+          "global_rank": 4
+        },
+        {
+          "name": "Cipla Limited",
+          "ticker": "CIPLA",
+          "sector": "Export-Oriented Businesses",
+          "score": 88,
+          "rank": 3,
+          "growth_trend": "growing",
+          "top_signals": [
+            "digital transformation",
+            "ERP implementation",
+            "data platform",
+            "automation",
+            "technology upgrade"
+          ],
+          "reasoning": "12% YoY US generics growth and expansion in Africa/ASEAN demand end-to-end compliance automation (FDA, WHO, local health authorities), cold chain traceability, and multi-country logistics coordination. Bollinger squeeze suggests breakout momentum \u2014 likely driven by new product launches requiring integrated regulatory, manufacturing, and distribution platforms. As a global pharma exporter, it requires GxP-compliant systems to reduce audit risk and accelerate time-to-market.",
+          "recommended_approach": "Offer cloud-native pharma export platform with automated regulatory document generation, global serialization, and AI-based demand forecasting for emerging markets.",
+          "outreach_angle": "Turn your global generics leadership into operational excellence with a compliance-first, digitally connected supply chain that cuts delays and boosts market access speed.",
+          "risk_factors": [
+            "Stringent FDA/WHO audit expectations may delay vendor onboarding",
+            "Complex multi-entity structure may fragment IT procurement"
+          ],
+          "revenue_growth_pct": 12,
+          "description": "Cipla is a global pharmaceutical company with a strong export footprint, particularly in US generics, respiratory produc",
+          "website": "https://www.cipla.com",
+          "global_rank": 7
+        },
+        {
+          "name": "RSWM Limited",
+          "ticker": "RSWM",
+          "sector": "Export-Oriented Businesses",
+          "score": 84,
+          "rank": 4,
+          "growth_trend": "growing",
+          "top_signals": [
+            "automation",
+            "ERP implementation",
+            "technology upgrade",
+            "data platform"
+          ],
+          "reasoning": "18% YoY textile export growth to US/EU and new capacity ramp-up in Gujarat signal scaling beyond manual processes. Apparel/textile exports require intricate compliance (tariff codes, origin certifications), just-in-time inventory, and multi-tier supplier coordination. Bullish MACD and volume spike reflect aggressive growth \u2014 indicating imminent need for integrated ERP to manage sourcing, production scheduling, and customs clearance across global markets.",
+          "recommended_approach": "Pitch industry-specific textile ERP with export compliance modules, automated origin certification, and AI-driven fabric demand planning.",
+          "outreach_angle": "Automate your global textile exports with a platform that turns customs paperwork into digital workflows and connects your Gujarat factory directly to your US/EU buyers.",
+          "risk_factors": [
+            "Low-margin industry may limit spend on non-core tech",
+            "Fragmented supplier base complicates system integration"
+          ],
+          "revenue_growth_pct": 18,
+          "description": "RSWM Limited is a leading Indian textile manufacturer specializing in yarn and fabric exports, with significant presence",
+          "website": "https://www.rswm.com",
+          "global_rank": 11
+        },
+        {
+          "name": "Strides Pharma Science",
+          "ticker": "STRIDES",
+          "sector": "Export-Oriented Businesses",
+          "score": 80,
+          "rank": 5,
+          "growth_trend": "growing",
+          "top_signals": [
+            "digital transformation",
+            "automation",
+            "ERP implementation",
+            "technology upgrade"
+          ],
+          "reasoning": "Strong export growth in US/EU and positive FDA inspections indicate readiness for portfolio expansion. However, pharma exporters at Strides\u2019 scale need automated batch record systems, digital audit trails, and logistics tracking compliant with 21 CFR Part 11. Neutral RSI and bullish MA suggest a consolidation phase \u2014 ideal window to upgrade IT systems before next wave of launches. Yet, absence of explicit scale announcements indicates cautious, phased investment.",
+          "recommended_approach": "Propose FDA-compliant cloud-based QMS and export documentation automation for generic API and finished product shipments.",
+          "outreach_angle": "Ensure your next FDA-approved product launch hits markets faster \u2014 with automated compliance and audit-ready digital records built into your export workflow.",
+          "risk_factors": [
+            "Historically cautious capex culture in mid-sized pharma firms",
+            "Regulatory readiness may be handled internally rather than externally"
+          ],
+          "revenue_growth_pct": 11.5,
+          "description": "Strides Pharma Science is an Indian pharmaceutical company focused on generic drug manufacturing with over 70% of revenu",
+          "website": "https://www.strides.com",
+          "global_rank": 14
+        }
+      ]
+    }
+  ],
+  "global_leaderboard": [
+    {
+      "name": "Cyient",
+      "ticker": "CYIENT",
+      "sector": "Manufacturing",
+      "score": 94,
+      "rank": 1,
+      "growth_trend": "growing",
+      "top_signals": [
+        "digital transformation",
+        "automation",
+        "ERP implementation",
+        "cloud migration",
+        "technology upgrade"
+      ],
+      "reasoning": "25.4% YoY revenue growth in aerospace and engineering services indicates high-value, complex manufacturing and design workflows. As a technology company serving global OEMs, Cyient must deploy integrated digital twin platforms, cloud-based PLM/ERP, and AI-driven predictive maintenance to meet client SLAs. Technical signals (MACD crossover, rising OBV) reflect strong investor confidence and operational momentum \u2014 prime conditions for strategic IT investment.",
+      "recommended_approach": "Offer end-to-end digital manufacturing suite: Siemens/PTC-integrated PLM, IoT-enabled shop floor monitoring, and cloud ERP for global engineering projects.",
+      "outreach_angle": "Help Cyient scale its aerospace and engineering services with a unified digital thread that connects design, production, and quality data across global clients.",
+      "risk_factors": [],
+      "revenue_growth_pct": 25.4,
+      "description": "Cyient is a global engineering and technology company headquartered in Hyderabad, providing design, manufacturing, and d",
+      "website": "https://www.cyient.com",
+      "global_rank": 1
+    },
+    {
+      "name": "Eicher Motors",
+      "ticker": "EICHERMOT",
+      "sector": "Export-Oriented Businesses",
+      "score": 93,
+      "rank": 1,
+      "growth_trend": "growing",
+      "top_signals": [
+        "digital transformation",
+        "automation",
+        "ERP implementation",
+        "cloud migration",
+        "technology upgrade"
+      ],
+      "reasoning": "31% YoY export surge in North America and Europe, coupled with a new ASEAN manufacturing partnership, creates urgent need for global supply chain orchestration, real-time inventory visibility, and compliance integration (C-TPAT, customs codes). Royal Enfield\u2019s premium global brand requires high-touch digital customer platforms, IoT-enabled vehicle data tracking, and integrated ERP for cross-border manufacturing coordination. Strong ADX and overbought Stochastic reflect aggressive scaling \u2014 classic trigger for strategic IT modernization.",
+      "recommended_approach": "Propose end-to-end global manufacturing ERP with IoT integration for vehicle traceability, automated customs documentation, and multi-currency B2B customer portal.",
+      "outreach_angle": "Scale your global motorcycle exports with a unified digital backbone that connects factories, distributors, and regulators in real time \u2014 turning logistics complexity into competitive advantage.",
+      "risk_factors": [
+        "Complex global regulatory landscape may slow software adoption",
+        "High brand premium may lead to in-house tech development over vendor solutions"
+      ],
+      "revenue_growth_pct": 31,
+      "description": "Eicher Motors, the maker of Royal Enfield motorcycles, is a leading Indian auto exporter with growing global presence in",
+      "website": "https://www.eichermotors.com",
+      "global_rank": 2
+    },
+    {
+      "name": "Divi's Laboratories",
+      "ticker": "DIVISLAB",
+      "sector": "healthcare and pharma",
+      "score": 92,
+      "rank": 1,
+      "growth_trend": "growing",
+      "top_signals": [
+        "digital transformation",
+        "automation",
+        "ERP implementation",
+        "data platform",
+        "technology upgrade"
+      ],
+      "reasoning": "Rapid export growth to regulated US/EU markets + expanded FDA-approved manufacturing capacity demands end-to-end digital compliance (21 CFR Part 11), batch traceability, and integrated ERP. Strong technical momentum (MA crossover, volume spike) indicates strategic scaling \u2014 highly likely to invest in AI-driven process optimization and cloud-based quality management systems to maintain regulatory alignment.",
+      "recommended_approach": "Propose integrated GxP-compliant ERP and digital manufacturing platform with AI-based predictive quality control for API production.",
+      "outreach_angle": "Help Divi's scale US/EU exports with a fully audit-ready digital quality and compliance platform that automates documentation and reduces FDA observation risks.",
+      "risk_factors": [
+        "No public mention of new CTO or IT leadership hire",
+        "Legacy systems may hinder rapid cloud migration"
+      ],
+      "revenue_growth_pct": 19.2,
+      "description": "Divi's Laboratories is a leading Indian pharmaceutical company specializing in active pharmaceutical ingredients (APIs) ",
+      "website": "https://www.divislab.com",
+      "global_rank": 3
+    },
+    {
+      "name": "Tech Mahindra",
+      "ticker": "TECHM",
+      "sector": "Export-Oriented Businesses",
+      "score": 91,
+      "rank": 2,
+      "growth_trend": "growing",
+      "top_signals": [
+        "AI adoption",
+        "cloud migration",
+        "digital transformation",
+        "data platform",
+        "IT modernization"
+      ],
+      "reasoning": "As a global IT services firm deriving >90% revenue from international clients, Tech Mahindra is both a service provider and a tech customer. Securing $500M+ new contracts means it must scale its own delivery platforms: AI-powered service orchestration, global cybersecurity frameworks, data lakes for client analytics, and automated resource allocation systems. Rising OBV and MA crossover indicate scaling confidence \u2014 its own tech stack must evolve to deliver on client promises.",
+      "recommended_approach": "Pitch AI-driven IT service automation suites, global cybersecurity compliance platforms, and embedded analytics dashboards for enterprise delivery teams.",
+      "outreach_angle": "Help Tech Mahindra exceed client SLAs with an intelligent internal delivery engine that predicts resource bottlenecks, automates QA, and visualizes global project health in real time.",
+      "risk_factors": [
+        "Large internal tech team may prefer building vs. buying",
+        "High vendor lock-in risk due to existing legacy delivery platforms"
+      ],
+      "revenue_growth_pct": 15.8,
+      "description": "Tech Mahindra is a global IT services company with over 90% of its revenue coming from international clients across Nort",
+      "website": "https://www.techmahindra.com",
+      "global_rank": 4
+    },
+    {
+      "name": "Torrent Pharma",
+      "ticker": "TORNTPHARM",
+      "sector": "healthcare and pharma",
+      "score": 90,
+      "rank": 2,
+      "growth_trend": "growing",
+      "top_signals": [
+        "digital transformation",
+        "ERP implementation",
+        "cloud migration",
+        "capacity expansion"
+      ],
+      "reasoning": "Crossed \u20b94,400 Cr revenue with global growth implies complex supply chain and regulatory tracking needs. Expansion into US and emerging markets requires unified digital platforms for inventory, compliance, and distributor management. Consistent upward price trend and high retail turnover signal strong investor confidence \u2014 likely fueling tech investments to support operational scale.",
+      "recommended_approach": "Offer end-to-end pharma ERP with integrated global trade compliance, serialization, and cloud-based warehouse management.",
+      "outreach_angle": "Enable Torrent\u2019s global expansion with a single platform connecting manufacturing, distribution, and regulatory reporting across 50+ markets.",
+      "risk_factors": [
+        "Large org may have entrenched legacy systems",
+        "Slow procurement cycle in public pharma entities"
+      ],
+      "revenue_growth_pct": 17.8,
+      "description": "Torrent Pharmaceuticals is a leading Indian pharma company with diversified portfolios in India and global markets, offe",
+      "website": "https://www.torrentpharma.com",
+      "global_rank": 5
+    },
+    {
+      "name": "Blue Dart Express",
+      "ticker": "BLUEDART",
+      "sector": "Manufacturing",
+      "score": 89,
+      "rank": 2,
+      "growth_trend": "growing",
+      "top_signals": [
+        "automation",
+        "data platform",
+        "AI adoption",
+        "ERP implementation",
+        "technology upgrade"
+      ],
+      "reasoning": "35.3% YoY growth fueled by e-commerce logistics demands real-time tracking, dynamic routing, automated warehousing, and predictive delivery analytics. A high-volume logistics operator must have advanced data platforms for shipment orchestration and AI-based capacity optimization. Bullish breakout signals indicate active scaling \u2014 a clear trigger for investment in logistics software and warehouse automation tools.",
+      "recommended_approach": "Pitch AI-powered logistics orchestration platform with automated sorting, route optimization, and real-time tracking integration.",
+      "outreach_angle": "Turn India\u2019s e-commerce boom into operational advantage with an intelligent, self-optimizing logistics network that cuts delays and improves margins.",
+      "risk_factors": [
+        "High dependency on third-party integrations (e-commerce platforms)",
+        "Legacy sorting facilities may resist automation"
+      ],
+      "revenue_growth_pct": 35.3,
+      "description": "Blue Dart Express is India\u2019s leading express air courier company, offering integrated logistics and supply chain solutio",
+      "website": "https://www.bluedart.com",
+      "global_rank": 6
+    },
+    {
+      "name": "Cipla Limited",
+      "ticker": "CIPLA",
+      "sector": "Export-Oriented Businesses",
+      "score": 88,
+      "rank": 3,
+      "growth_trend": "growing",
+      "top_signals": [
+        "digital transformation",
+        "ERP implementation",
+        "data platform",
+        "automation",
+        "technology upgrade"
+      ],
+      "reasoning": "12% YoY US generics growth and expansion in Africa/ASEAN demand end-to-end compliance automation (FDA, WHO, local health authorities), cold chain traceability, and multi-country logistics coordination. Bollinger squeeze suggests breakout momentum \u2014 likely driven by new product launches requiring integrated regulatory, manufacturing, and distribution platforms. As a global pharma exporter, it requires GxP-compliant systems to reduce audit risk and accelerate time-to-market.",
+      "recommended_approach": "Offer cloud-native pharma export platform with automated regulatory document generation, global serialization, and AI-based demand forecasting for emerging markets.",
+      "outreach_angle": "Turn your global generics leadership into operational excellence with a compliance-first, digitally connected supply chain that cuts delays and boosts market access speed.",
+      "risk_factors": [
+        "Stringent FDA/WHO audit expectations may delay vendor onboarding",
+        "Complex multi-entity structure may fragment IT procurement"
+      ],
+      "revenue_growth_pct": 12,
+      "description": "Cipla is a global pharmaceutical company with a strong export footprint, particularly in US generics, respiratory produc",
+      "website": "https://www.cipla.com",
+      "global_rank": 7
+    },
+    {
+      "name": "Pfizer India",
+      "ticker": "PFIZER",
+      "sector": "healthcare and pharma",
+      "score": 87,
+      "rank": 3,
+      "growth_trend": "growing",
+      "top_signals": [
+        "AI adoption",
+        "technology upgrade",
+        "data platform",
+        "IT modernization"
+      ],
+      "reasoning": "As a subsidiary of global pharma leader Pfizer, this entity likely inherits advanced digital standards. Launch of biosimilars and chronic disease portfolio growth requires robust data platforms for pharmacovigilance, demand forecasting, and real-time supply chain visibility. High institutional holding and trading near 52-week high suggest strategic investment readiness.",
+      "recommended_approach": "Pitch AI-enabled pharmacovigilance analytics and integrated digital commercialization suite aligned with Pfizer global IT standards.",
+      "outreach_angle": "Leverage Pfizer\u2019s global tech DNA to deploy real-time AI-driven market intelligence and patient data analytics for your India portfolio expansion.",
+      "risk_factors": [
+        "High internal IT capability may reduce vendor reliance",
+        "Corporate procurement may be slow or centralized"
+      ],
+      "revenue_growth_pct": 12.1,
+      "description": "Pfizer India is the domestic affiliate of global pharmaceutical giant Pfizer Inc., operating in branded generics, vaccin",
+      "website": "https://www.pfizer.co.in",
+      "global_rank": 8
+    },
+    {
+      "name": "Jubilant Life Sciences",
+      "ticker": "JUBILANTLIFE",
+      "sector": "Manufacturing",
+      "score": 87,
+      "rank": 3,
+      "growth_trend": "growing",
+      "top_signals": [
+        "digital transformation",
+        "automation",
+        "ERP implementation",
+        "data platform",
+        "technology upgrade"
+      ],
+      "reasoning": "Over \u20b95,000 Cr revenue with API export growth implies complex, regulated pharmaceutical manufacturing. Requires GxP-compliant batch traceability, automated quality control, and integrated ERP for raw material to finished product end-to-end. Positive earnings surprise and volume breakout suggest capacity expansion is underway \u2014 highly likely to invest in Industry 4.0 tools to reduce compliance risk and scale output.",
+      "recommended_approach": "Propose pharma-specific MES and cloud-based ERP with 21 CFR Part 11 compliance, AI-driven yield prediction, and automated audit trails.",
+      "outreach_angle": "Secure global API exports with a fully audit-ready digital manufacturing platform that automates compliance and boosts throughput without adding headcount.",
+      "risk_factors": [
+        "Stringent regulatory environment slows vendor onboarding",
+        "Legacy batch record systems may be deeply entrenched"
+      ],
+      "revenue_growth_pct": 21.8,
+      "description": "Jubilant Life Sciences is a top Indian pharma manufacturer focused on active pharmaceutical ingredients (APIs), drug int",
+      "website": "https://www.jubilant.com",
+      "global_rank": 9
+    },
+    {
+      "name": "Transport Corporation of India Limited",
+      "ticker": "TCIL",
+      "sector": "travel logistics and supply chain",
+      "score": 85,
+      "rank": 1,
+      "growth_trend": "growing",
+      "top_signals": [
+        "digital transformation",
+        "automation",
+        "cloud migration",
+        "ERP implementation"
+      ],
+      "reasoning": "18.3% YoY revenue growth driven by e-logistics expansion and strategic e-commerce partnerships strongly indicate need for scalable IT infrastructure. While no explicit tech keywords appear in news, technical indicators (bullish MACD, MA crossover) suggest operational modernization is underway. Large logistics player with national footprint implies pressing need for ERP, automation, and cloud-based tracking systems to support growth.",
+      "recommended_approach": "Offer modular ERP and AI-powered route optimization solutions with phased cloud migration support tailored for mid-to-large logistics firms.",
+      "outreach_angle": "Help TCIL scale its e-logistics segment with AI-driven last-mile automation and real-time cargo tracking on scalable cloud platforms.",
+      "risk_factors": [
+        "Limited explicit tech keywords in press releases",
+        "Potential internal resistance to cloud adoption in legacy logistics systems"
+      ],
+      "revenue_growth_pct": 18.3,
+      "description": "Transport Corporation of India Limited (TCIL) is India's largest publicly traded logistics company offering integrated s",
+      "website": "https://www.tcil.in",
+      "global_rank": 10
+    },
+    {
+      "name": "RSWM Limited",
+      "ticker": "RSWM",
+      "sector": "Export-Oriented Businesses",
+      "score": 84,
+      "rank": 4,
+      "growth_trend": "growing",
+      "top_signals": [
+        "automation",
+        "ERP implementation",
+        "technology upgrade",
+        "data platform"
+      ],
+      "reasoning": "18% YoY textile export growth to US/EU and new capacity ramp-up in Gujarat signal scaling beyond manual processes. Apparel/textile exports require intricate compliance (tariff codes, origin certifications), just-in-time inventory, and multi-tier supplier coordination. Bullish MACD and volume spike reflect aggressive growth \u2014 indicating imminent need for integrated ERP to manage sourcing, production scheduling, and customs clearance across global markets.",
+      "recommended_approach": "Pitch industry-specific textile ERP with export compliance modules, automated origin certification, and AI-driven fabric demand planning.",
+      "outreach_angle": "Automate your global textile exports with a platform that turns customs paperwork into digital workflows and connects your Gujarat factory directly to your US/EU buyers.",
+      "risk_factors": [
+        "Low-margin industry may limit spend on non-core tech",
+        "Fragmented supplier base complicates system integration"
+      ],
+      "revenue_growth_pct": 18,
+      "description": "RSWM Limited is a leading Indian textile manufacturer specializing in yarn and fabric exports, with significant presence",
+      "website": "https://www.rswm.com",
+      "global_rank": 11
+    },
+    {
+      "name": "Natco Pharma",
+      "ticker": "NATCOPHARM",
+      "sector": "healthcare and pharma",
+      "score": 83,
+      "rank": 4,
+      "growth_trend": "growing",
+      "top_signals": [
+        "digital transformation",
+        "automation",
+        "data platform",
+        "technology upgrade"
+      ],
+      "reasoning": "Robust biosimilar pipeline growth and FDA approval for oncology generics signal need for scalable IT systems to manage product lifecycle, batch tracking, and clinical-data integration. Neutral RSI and MA crossover suggest operational maturity \u2014 an ideal time for tech modernization to support regulatory compliance and commercial scale.",
+      "recommended_approach": "Propose cloud-based QMS and digital batch record systems designed for oncology and biosimilar manufacturing.",
+      "outreach_angle": "Accelerate your biosimilar launch timeline with automated documentation and integrated regulatory data platforms that reduce approval delays.",
+      "risk_factors": [
+        "Smaller scale may limit IT budget autonomy",
+        "Focus on R&D may delay operational tech investments"
+      ],
+      "revenue_growth_pct": 14.6,
+      "description": "Natco Pharma is a mid-sized Indian pharmaceutical firm known for specialty generics in oncology, virology, and transplan",
+      "website": "https://www.natcopharma.com",
+      "global_rank": 12
+    },
+    {
+      "name": "Sonata Software",
+      "ticker": "532718",
+      "sector": "independent software vendors",
+      "score": 82,
+      "rank": 1,
+      "growth_trend": "growing",
+      "top_signals": [
+        "cloud migration",
+        "AI adoption",
+        "IT modernization",
+        "data platform",
+        "technology upgrade"
+      ],
+      "reasoning": "Sonata is a product-led ISV expanding its AI-driven SaaS footprint in North America and Europe \u2014 requiring enterprise-grade internal systems: scalable cloud infrastructure (AWS/Azure), secure CI/CD pipelines, data lakes for client analytics, and cybersecurity compliance tools (SOC 2, ISO 27001). Strong gross margin improvement signals operational efficiency focus \u2014 likely driving investment in automated DevOps, AI-powered support platforms, and integrated CRM/ERP for client lifecycle management. As a technology vendor, it does not buy ERP for manufacturing but invests heavily in enabling tech for its own product delivery.",
+      "recommended_approach": "Pitch cloud-native DevSecOps platforms, AI-driven customer success analytics, and enterprise SaaS billing/subscription platforms tailored for global ISVs.",
+      "outreach_angle": "Help Sonata scale its global SaaS delivery with automated, secure, and observable infrastructure that reduces downtime, accelerates releases, and improves client retention \u2014 the engine behind your growth.",
+      "risk_factors": [
+        "Internal tech stack may be already mature and vendor-locked",
+        "Prioritization may favor client-facing over internal tooling investments"
+      ],
+      "revenue_growth_pct": 8.7,
+      "description": "Sonata Software is an independent software vendor offering digital transformation, enterprise applications, and cloud so",
+      "website": "https://www.sonatasw.com",
+      "global_rank": 13
+    },
+    {
+      "name": "Strides Pharma Science",
+      "ticker": "STRIDES",
+      "sector": "Export-Oriented Businesses",
+      "score": 80,
+      "rank": 5,
+      "growth_trend": "growing",
+      "top_signals": [
+        "digital transformation",
+        "automation",
+        "ERP implementation",
+        "technology upgrade"
+      ],
+      "reasoning": "Strong export growth in US/EU and positive FDA inspections indicate readiness for portfolio expansion. However, pharma exporters at Strides\u2019 scale need automated batch record systems, digital audit trails, and logistics tracking compliant with 21 CFR Part 11. Neutral RSI and bullish MA suggest a consolidation phase \u2014 ideal window to upgrade IT systems before next wave of launches. Yet, absence of explicit scale announcements indicates cautious, phased investment.",
+      "recommended_approach": "Propose FDA-compliant cloud-based QMS and export documentation automation for generic API and finished product shipments.",
+      "outreach_angle": "Ensure your next FDA-approved product launch hits markets faster \u2014 with automated compliance and audit-ready digital records built into your export workflow.",
+      "risk_factors": [
+        "Historically cautious capex culture in mid-sized pharma firms",
+        "Regulatory readiness may be handled internally rather than externally"
+      ],
+      "revenue_growth_pct": 11.5,
+      "description": "Strides Pharma Science is an Indian pharmaceutical company focused on generic drug manufacturing with over 70% of revenu",
+      "website": "https://www.strides.com",
+      "global_rank": 14
+    },
+    {
+      "name": "Aarti Drugs",
+      "ticker": "AARTIIND",
+      "sector": "healthcare and pharma",
+      "score": 79,
+      "rank": 5,
+      "growth_trend": "growing",
+      "top_signals": [
+        "automation",
+        "technology upgrade",
+        "ERP implementation"
+      ],
+      "reasoning": "15% YoY revenue growth despite margin pressure indicates efficiency-driven scaling. New FDA approval signals need for compliant digital systems, but limited news depth and absence of strategic partnerships suggest phased tech adoption. MACD turning positive and breakout above \u20b91,100 indicate upside potential \u2014 likely preparing for next growth phase with light IT modernization.",
+      "recommended_approach": "Offer modular, low-cost digital compliance suite for small-to-mid pharma: automated batch recording, inventory tracking, and export documentation.",
+      "outreach_angle": "Turn FDA approval into operational advantage with affordable, fast-deploy digital tools that reduce compliance costs and boost export readiness.",
+      "risk_factors": [
+        "Margin pressure may constrain tech investment",
+        "Limited public visibility on strategic tech roadmap"
+      ],
+      "revenue_growth_pct": 15,
+      "description": "Aarti Drugs is a mid-cap Indian pharma company focused on specialty APIs and intermediates, with significant exports to ",
+      "website": "https://www.aartidrugs.com",
+      "global_rank": 15
+    },
+    {
+      "name": "SJ Logistics Limited",
+      "ticker": "SJLOGISTICS",
+      "sector": "travel logistics and supply chain",
+      "score": 78,
+      "rank": 2,
+      "growth_trend": "growing",
+      "top_signals": [
+        "automation",
+        "data platform",
+        "technology upgrade",
+        "capacity expansion"
+      ],
+      "reasoning": "22% growth in e-commerce logistics revenue from cross-border partnerships signals urgent need for international trade tech \u2014 customs automation, real-time data platforms, and integration with global retail systems. Bullish Stochastic and widening Bollinger Bands reflect accelerating growth, likely requiring IT upgrades for global connectivity and visibility. Though no direct tech keyword is stated, expansion into Southeast Asia and Middle East demands scalable logistics software.",
+      "recommended_approach": "Pitch integrated global logistics software with AI-based customs compliance, multi-currency tracking, and API connections to cross-border e-commerce platforms.",
+      "outreach_angle": "Enable SJ Logistics\u2019 global expansion with a unified digital logistics platform that automates cross-border operations and connects directly to your retail partners.",
+      "risk_factors": [
+        "No mention of new CTO or formal IT initiative",
+        "Potential bandwidth constraints to manage international tech integrations"
+      ],
+      "revenue_growth_pct": 22,
+      "description": "SJ Logistics provides end-to-end logistics and supply chain services across global markets, specializing in project carg",
+      "website": "https://www.sjlogistics.com",
+      "global_rank": 16
+    },
+    {
+      "name": "Godrej Properties",
+      "ticker": "GODREJPROP",
+      "sector": "Manufacturing",
+      "score": 78,
+      "rank": 4,
+      "growth_trend": "growing",
+      "top_signals": [
+        "technology upgrade",
+        "data platform",
+        "ERP implementation",
+        "capacity expansion"
+      ],
+      "reasoning": "\u20b94,927 Cr revenue from manufacturing-linked SEZ and residential projects implies complex supply chain and vendor coordination. As a developer embedded in manufacturing ecosystems, Godrej requires integrated ERP for procurement, subcontractor management, and real-time project tracking. Bullish technical signals reflect market confidence \u2014 likely to upgrade systems to manage scale and reduce delay risks.",
+      "recommended_approach": "Offer construction and infrastructure ERP with vendor portal, procurement automation, and real-time site progress dashboards.",
+      "outreach_angle": "Streamline your manufacturing-linked real estate projects with a single platform connecting suppliers, contractors, and site operations for zero-delay delivery.",
+      "risk_factors": [
+        "Real estate development cycles are long \u2014 tech ROI harder to justify",
+        "Decentralized project teams may hinder platform adoption"
+      ],
+      "revenue_growth_pct": 18.5,
+      "description": "Godrej Properties is a leading real estate developer with substantial engagement in manufacturing ecosystem infrastructu",
+      "website": "https://www.godrejproperties.com",
+      "global_rank": 17
+    },
+    {
+      "name": "JK Paper",
+      "ticker": "JKPAPER",
+      "sector": "Manufacturing",
+      "score": 72,
+      "rank": 5,
+      "growth_trend": "recovering",
+      "top_signals": [
+        "automation",
+        "technology upgrade",
+        "ERP implementation"
+      ],
+      "reasoning": "14.3% YoY revenue decline in FY23 signals recent headwinds, but Q1 FY24 export recovery and upward 200-day MA trend indicate stabilization. As a paperboard manufacturer, core needs are inventory optimization, energy efficiency, and production automation \u2014 all within ERP or IIoT scope. Volume spike suggests renewed investor interest \u2014 a catalyst for cost-reduction tech investments. However, past decline implies constrained capex, making tech adoption cautious and phased.",
+      "recommended_approach": "Propose low-cost IIoT sensors for energy monitoring and automated paper machine performance tracking with modular ERP integration.",
+      "outreach_angle": "Turn your recovery into efficiency gains with smart factory tools that reduce energy waste and improve machine uptime \u2014 without big capex.",
+      "risk_factors": [
+        "Recent revenue decline limits discretionary tech budget",
+        "Industry-wide margin pressure may delay digital transformation"
+      ],
+      "revenue_growth_pct": -14.3,
+      "description": "JK Paper is a leading Indian manufacturer of paper and paperboards, catering to packaging, printing, and stationery sect",
+      "website": "https://www.jkpaper.com",
+      "global_rank": 18
+    }
+  ],
+  "total_companies_analysed": 18
+}
