@@ -1,6 +1,11 @@
 # agents/reporter.py — Template-based: LLM only writes email drafts, HTML is pre-built
+#
+# Reads the unified schema (analyst block, news.hiring, profile, etc.).
+# Passes the FULL company record into the HTML template — the template
+# is responsible for hiding fields it doesn't render. Only safety
+# truncation is annual_report_excerpt → 500 chars.
 
-import json, time, os
+import json, os, time
 from datetime import datetime
 from strands import Agent
 from strands.models import BedrockModel
@@ -21,16 +26,30 @@ def create_email_agent():
 
 
 def _batch_email_drafts(companies: list, agent: Agent) -> list:
-    """Generate emails for all companies in ONE call."""
+    """Generate emails for all companies in ONE call.
+    Reads top_signals + outreach_angle from .analyst (new schema) and
+    enriches each spec with the first hiring news snippet for extra context."""
     if not companies:
         return companies
 
     specs = []
     for i, c in enumerate(companies):
+        analyst = c.get("analyst") or {}
+        signals = (analyst.get("top_signals") or [])[:2]
+        angle = analyst.get("outreach_angle") or "N/A"
+        sector = c.get("sector_query") or (c.get("profile") or {}).get("industry") or ""
+
+        hiring_blurb = ""
+        hiring_hits = ((c.get("news") or {}).get("hiring") or [])
+        if hiring_hits:
+            content = (hiring_hits[0].get("content") or "")[:150]
+            if content:
+                hiring_blurb = f" | hiring: {content}"
+
         specs.append(
-            f"{i+1}. {c.get('name')} | {c.get('sector')} | "
-            f"signals: {', '.join(c.get('top_signals', [])[:2])} | "
-            f"angle: {c.get('outreach_angle', 'N/A')}"
+            f"{i+1}. {c.get('name')} | {sector} | "
+            f"signals: {', '.join(signals)} | "
+            f"angle: {angle}{hiring_blurb}"
         )
 
     prompt = (
@@ -54,17 +73,29 @@ def _batch_email_drafts(companies: list, agent: Agent) -> list:
     for em in emails:
         idx = em.get("index", 0) - 1
         if 0 <= idx < len(companies):
-            companies[idx]["email_draft"] = f"SUBJECT: {em.get('subject','')}\n\n{em.get('body','')}"
+            companies[idx]["outreach"] = {
+                "email_subject": em.get("subject", ""),
+                "email_body": em.get("body", ""),
+                "drafted_at": datetime.now().isoformat(),
+            }
 
     for c in companies:
-        if "email_draft" not in c:
-            c["email_draft"] = f"SUBJECT: Quick question for {c.get('name','your team')}\n\n[Draft pending]"
+        if "outreach" not in c:
+            c["outreach"] = {
+                "email_subject": f"Quick question for {c.get('name','your team')}",
+                "email_body": "[Draft pending]",
+                "drafted_at": datetime.now().isoformat(),
+                "_fallback": True,
+            }
 
     return companies
 
 
 def _inject_data_into_template(companies: list) -> str:
-    """Read the HTML template and inject the company JSON data."""
+    """Inject the FULL company records into the template — no field whitelist.
+    Template hides what it doesn't render. Only safety truncation:
+    documents.annual_report_excerpt is capped at 500 chars to keep the
+    inline JSON blob from blowing up the HTML payload."""
     template_file = TEMPLATE_PATH
     if not os.path.exists(template_file):
         template_file = os.path.join("templates", "report_template.html")
@@ -72,27 +103,18 @@ def _inject_data_into_template(companies: list) -> str:
     with open(template_file, "r", encoding="utf-8") as f:
         html = f.read()
 
-    clean = []
+    safe = []
     for c in companies:
-        clean.append({
-            "name": c.get("name", ""),
-            "ticker": c.get("ticker", ""),
-            "sector": c.get("sector", ""),
-            "score": c.get("score", 0),
-            "global_rank": c.get("global_rank", 0),
-            "revenue_growth_pct": c.get("revenue_growth_pct", 0),
-            "growth_trend": c.get("growth_trend", ""),
-            "top_signals": c.get("top_signals", []),
-            "reasoning": c.get("reasoning", ""),
-            "risk_factors": c.get("risk_factors", []),
-            "email_draft": c.get("email_draft", ""),
-            "outreach_angle": c.get("outreach_angle", ""),
-            "recommended_approach": c.get("recommended_approach", ""),
-            "description": c.get("description", ""),
-            "website": c.get("website", ""),
-        })
+        # Deep-ish copy via JSON round-trip; default=str handles datetimes
+        copy = json.loads(json.dumps(c, default=str))
+        docs = copy.get("documents")
+        if isinstance(docs, dict):
+            excerpt = docs.get("annual_report_excerpt")
+            if isinstance(excerpt, str) and len(excerpt) > 500:
+                docs["annual_report_excerpt"] = excerpt[:500]
+        safe.append(copy)
 
-    data_json = json.dumps(clean, ensure_ascii=False)
+    data_json = json.dumps(safe, ensure_ascii=False, default=str)
     html = html.replace("/*__DATA__*/[]/*__END__*/", f"/*__DATA__*/{data_json}/*__END__*/")
     return html
 
@@ -112,6 +134,7 @@ def run_reporter(analyst_output: dict) -> str:
     print("   📄 Injecting data into HTML template...")
     html = _inject_data_into_template(top)
 
+    os.makedirs("output", exist_ok=True)
     output_path = "output/report.html"
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(html)

@@ -4,524 +4,600 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prospect Intelligence Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Inter', -apple-system, system-ui, sans-serif; background: #f0f2f5; color: #1a1a2e; display: flex; min-height: 100vh; font-size: 12px; }
+:root {
+  --bg: #0f1117; --surface: #1a1d27; --surface2: #22262f; --border: #2a2e3a;
+  --text: #e4e7ec; --text-dim: #8b92a5; --text-muted: #5c6478;
+  --accent: #6366f1; --accent-soft: rgba(99,102,241,0.12);
+  --green: #22c55e; --green-soft: rgba(34,197,94,0.12);
+  --amber: #f59e0b; --amber-soft: rgba(245,158,11,0.12);
+  --red: #ef4444; --red-soft: rgba(239,68,68,0.12);
+  --blue: #3b82f6; --blue-soft: rgba(59,130,246,0.12);
+}
+body { font-family: 'Inter', -apple-system, system-ui, sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; font-size: 13px; }
 
 /* ── Sidebar ─────────────────────────────────────────────── */
 .sidebar {
-  width: 210px; min-width: 210px; background: #1a2b4a; color: #fff;
-  padding: 20px 16px; display: flex; flex-direction: column; position: fixed;
+  width: 240px; min-width: 240px; background: var(--surface); border-right: 1px solid var(--border);
+  padding: 24px 18px; display: flex; flex-direction: column; position: fixed;
   top: 0; left: 0; bottom: 0; overflow-y: auto; z-index: 100;
 }
-.sidebar-brand { font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
-.sidebar-sub { font-size: 9px; color: #8899b4; margin-top: 2px; }
-.sidebar-section { margin-top: 24px; }
-.sidebar-label { font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #8899b4; margin-bottom: 8px; }
+.sidebar-brand { font-size: 14px; font-weight: 800; letter-spacing: -0.3px; color: #fff; }
+.sidebar-sub { font-size: 10px; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.3px; }
+.sidebar-section { margin-top: 28px; }
+.sidebar-label { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; }
 .sidebar-search {
-  width: 100%; padding: 6px 10px; background: #243552; border: 1px solid #34496b;
-  border-radius: 6px; color: #fff; font-size: 11px; outline: none;
+  width: 100%; padding: 8px 12px; background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; color: var(--text); font-size: 12px; outline: none; transition: border-color 0.15s;
 }
-.sidebar-search::placeholder { color: #6b80a0; font-size: 10px; }
-.sidebar-search:focus { border-color: #e8533c; }
-
-/* Checkboxes */
+.sidebar-search::placeholder { color: var(--text-muted); }
+.sidebar-search:focus { border-color: var(--accent); }
 .sector-list { list-style: none; }
-.sector-item { margin-bottom: 6px; display: flex; align-items: center; gap: 6px; cursor: pointer; }
-.sector-item input[type="checkbox"] { accent-color: #e8533c; width: 14px; height: 14px; cursor: pointer; }
-.sector-item label { font-size: 11px; font-weight: 500; letter-spacing: 0.2px; text-transform: uppercase; cursor: pointer; }
-
-/* Score slider */
-.slider-container { margin-top: 4px; }
-.slider-values { display: flex; justify-content: space-between; font-size: 10px; color: #8899b4; margin-bottom: 4px; }
-.slider-values .current { color: #fff; }
-input[type="range"] {
-  -webkit-appearance: none; width: 100%; height: 3px; background: #34496b;
-  border-radius: 2px; outline: none;
-}
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none; width: 14px; height: 14px; background: #e8533c;
-  border-radius: 50%; cursor: pointer;
-}
-
-/* Trend buttons */
+.sector-item { margin-bottom: 6px; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+.sector-item input[type="checkbox"] { accent-color: var(--accent); width: 15px; height: 15px; cursor: pointer; }
+.sector-item label { font-size: 11px; font-weight: 500; cursor: pointer; color: var(--text-dim); }
+.slider-container { margin-top: 6px; }
+.slider-values { display: flex; justify-content: space-between; font-size: 10px; color: var(--text-muted); margin-bottom: 4px; }
+.slider-values .current { color: var(--accent); font-weight: 700; }
+input[type="range"] { -webkit-appearance: none; width: 100%; height: 4px; background: var(--border); border-radius: 2px; outline: none; }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; background: var(--accent); border-radius: 50%; cursor: pointer; }
 .trend-options { display: flex; flex-direction: column; gap: 4px; }
 .trend-btn {
-  display: block; width: 100%; padding: 5px 10px; background: #243552;
-  border: 1px solid #34496b; border-radius: 6px; color: #c0cedf;
+  display: block; width: 100%; padding: 7px 12px; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: 8px; color: var(--text-dim);
   font-size: 11px; text-align: left; cursor: pointer; transition: all 0.15s;
 }
-.trend-btn:hover { background: #2c4266; }
-.trend-btn.active { background: #34496b; color: #fff; border-color: #4a6a92; }
+.trend-btn:hover { background: var(--border); color: var(--text); }
+.trend-btn.active { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+.sidebar-footer { margin-top: auto; padding-top: 16px; font-size: 10px; color: var(--text-muted); }
 
-.sidebar-footer { margin-top: auto; padding-top: 16px; font-size: 9px; color: #5a7394; }
-
-/* ── Main Content ────────────────────────────────────────── */
-.main { margin-left: 210px; flex: 1; min-width: 0; }
-
-/* Header */
-.top-header {
-  background: #1a2b4a; padding: 12px 28px; display: flex;
-  align-items: center; justify-content: space-between;
-}
-.header-title { font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.2px; }
-.header-subtitle { font-size: 11px; color: #8899b4; margin-top: 2px; }
-.header-actions { display: flex; gap: 8px; align-items: center; }
+/* ── Main ────────────────────────────────────────────────── */
+.main { margin-left: 240px; flex: 1; min-width: 0; }
+.top-header { background: var(--surface); padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
+.header-title { font-size: 20px; font-weight: 800; color: #fff; letter-spacing: -0.4px; }
+.header-subtitle { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+.header-actions { display: flex; gap: 8px; }
 .btn-export {
-  padding: 6px 14px; border: 1px solid #5a7394; border-radius: 6px;
-  background: transparent; color: #c0cedf; font-size: 11px; font-weight: 500;
-  cursor: pointer; display: flex; align-items: center; gap: 5px; transition: all 0.15s;
-}
-.btn-export:hover { background: #243552; color: #fff; }
-.btn-print {
-  padding: 6px 16px; border: none; border-radius: 6px; background: #e8533c;
-  color: #fff; font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.15s;
-}
-.btn-print:hover { background: #d4432d; }
-
-/* Content area */
-.content { padding: 20px 28px; }
-
-/* Stat cards */
-.stat-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
-.stat-card {
-  background: #fff; border: 1px solid #e2e8f0; border-radius: 10px;
-  padding: 14px 18px;
-}
-.stat-label { font-size: 9px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: #64748b; }
-.stat-value { font-size: 28px; font-weight: 700; margin-top: 4px; line-height: 1.1; }
-.stat-value.green { color: #22c55e; }
-.stat-sub { font-size: 10px; color: #8899b4; margin-top: 2px; }
-
-/* Table area */
-.showing-text { font-size: 11px; color: #64748b; margin-bottom: 10px; }
-.showing-text strong { color: #1a1a2e; }
-
-.data-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; }
-.data-table thead th {
-  padding: 10px 14px; font-size: 9px; font-weight: 600; letter-spacing: 0.7px;
-  text-transform: uppercase; color: #64748b; text-align: left;
-  border-bottom: 1px solid #e2e8f0; cursor: pointer; user-select: none; white-space: nowrap;
-}
-.data-table thead th:hover { color: #1a2b4a; }
-.data-table thead th .sort-arrow { font-size: 9px; margin-left: 3px; }
-
-/* Table rows */
-.data-table tbody tr.company-row {
-  border-bottom: 1px solid #f1f5f9; cursor: pointer; transition: background 0.1s;
-}
-.data-table tbody tr.company-row:hover { background: #f8fafc; }
-.data-table tbody td { padding: 10px 14px; font-size: 12px; vertical-align: middle; }
-
-/* Rank badge */
-.rank-badge {
-  width: 28px; height: 28px; border-radius: 50%; display: flex;
-  align-items: center; justify-content: center; font-size: 11px;
-  font-weight: 700; color: #fff;
-}
-.rank-badge.top { background: #22c55e; }
-.rank-badge.mid { background: #f59e0b; }
-.rank-badge.low { background: #94a3b8; }
-
-/* Company cell */
-.company-name { font-size: 13px; font-weight: 600; color: #1a1a2e; }
-.company-ticker { font-size: 9px; color: #94a3b8; text-transform: uppercase; margin-top: 1px; }
-
-/* Sector tag */
-.sector-tag { font-size: 11px; color: #3b82f6; font-weight: 500; }
-
-/* Score cell */
-.score-cell { display: flex; align-items: center; gap: 8px; }
-.score-num { font-size: 12px; font-weight: 700; min-width: 26px; }
-.score-bar-bg { width: 90px; height: 6px; background: #e2e8f0; border-radius: 3px; overflow: hidden; }
-.score-bar { height: 100%; border-radius: 3px; transition: width 0.3s; }
-.score-bar.high { background: #22c55e; }
-.score-bar.med { background: #f59e0b; }
-.score-bar.low { background: #ef4444; }
-
-/* Trend */
-.trend-cell { font-size: 11px; font-weight: 500; white-space: nowrap; }
-.trend-cell.up { color: #22c55e; }
-.trend-cell.flat { color: #94a3b8; }
-.trend-cell.down { color: #ef4444; }
-
-/* Top signal */
-.signal-text { font-size: 11px; color: #475569; max-width: 220px; }
-
-/* Expand arrow */
-.expand-arrow {
-  width: 26px; height: 26px; display: flex; align-items: center; justify-content: center;
-  color: #94a3b8; transition: transform 0.2s; font-size: 10px;
-}
-.company-row.expanded .expand-arrow { transform: rotate(180deg); }
-
-/* ── Expanded detail panel ───────────────────────────────── */
-.detail-row { display: none; }
-.detail-row.visible { display: table-row; }
-.detail-row td { padding: 0 !important; border-bottom: 2px solid #e2e8f0; }
-
-.detail-panel { padding: 18px 24px; display: flex; gap: 28px; background: #fafbfc; }
-.detail-left { flex: 1; min-width: 0; }
-.detail-right { width: 400px; min-width: 360px; }
-
-.detail-section-title {
-  font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-  color: #64748b; margin-bottom: 8px; margin-top: 14px;
-}
-.detail-section-title:first-child { margin-top: 0; }
-
-/* Buy signals */
-.signal-list { list-style: none; }
-.signal-list li {
-  padding: 3px 0; font-size: 11px; color: #334155;
-  display: flex; align-items: flex-start; gap: 6px;
-}
-.signal-list li::before {
-  content: ''; width: 6px; height: 6px; min-width: 6px; border-radius: 50%;
-  background: #22c55e; margin-top: 4px;
-}
-
-/* Reasoning */
-.reasoning-text { font-size: 11px; color: #475569; line-height: 1.5; }
-
-/* Risk factors */
-.risk-list { list-style: none; }
-.risk-list li {
-  padding: 2px 0; font-size: 11px; color: #e8533c; font-weight: 500;
-  display: flex; align-items: flex-start; gap: 5px;
-}
-.risk-list li::before { content: '⚠'; font-size: 10px; }
-
-/* Email card */
-.email-card {
-  background: #fff; border: 1px solid #e2e8f0; border-radius: 8px;
-  padding: 16px; font-size: 11px; line-height: 1.55; color: #334155;
-}
-.email-subject { font-weight: 700; color: #1a1a2e; margin-bottom: 10px; font-size: 12px; }
-.email-body { white-space: pre-wrap; font-size: 11px; }
-.btn-copy {
-  margin-top: 12px; padding: 6px 14px; background: #fff; border: 1px solid #d1d5db;
-  border-radius: 6px; font-size: 11px; font-weight: 500; color: #334155;
+  padding: 8px 16px; border: 1px solid var(--border); border-radius: 8px;
+  background: var(--surface2); color: var(--text-dim); font-size: 12px; font-weight: 500;
   cursor: pointer; transition: all 0.15s;
 }
-.btn-copy:hover { background: #f1f5f9; border-color: #94a3b8; }
-.btn-copy.copied { background: #22c55e; color: #fff; border-color: #22c55e; }
+.btn-export:hover { background: var(--border); color: var(--text); }
+.btn-print {
+  padding: 8px 18px; border: none; border-radius: 8px; background: var(--accent);
+  color: #fff; font-size: 12px; font-weight: 600; cursor: pointer;
+}
+.btn-print:hover { opacity: 0.9; }
+.content { padding: 24px 32px; }
 
-/* ── Print styles ────────────────────────────────────────── */
+/* ── Stat Cards ──────────────────────────────────────────── */
+.stat-cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 24px; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; }
+.stat-label { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--text-muted); }
+.stat-value { font-size: 28px; font-weight: 800; margin-top: 6px; line-height: 1; }
+.stat-value.green { color: var(--green); }
+.stat-value.accent { color: var(--accent); }
+.stat-sub { font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+
+/* ── Table ───────────────────────────────────────────────── */
+.showing-text { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; }
+.showing-text strong { color: var(--text); }
+.data-table { width: 100%; border-collapse: collapse; background: var(--surface); border-radius: 12px; overflow: hidden; border: 1px solid var(--border); }
+.data-table thead th {
+  padding: 12px 16px; font-size: 10px; font-weight: 700; letter-spacing: 0.8px;
+  text-transform: uppercase; color: var(--text-muted); text-align: left;
+  border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; white-space: nowrap;
+}
+.data-table thead th:hover { color: var(--text); }
+.data-table thead th .sort-arrow { font-size: 10px; margin-left: 3px; opacity: 0.5; }
+.data-table tbody tr.company-row { border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.1s; }
+.data-table tbody tr.company-row:hover { background: var(--surface2); }
+.data-table tbody td { padding: 12px 16px; font-size: 13px; vertical-align: middle; }
+
+/* Rank */
+.rank-badge { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: #fff; }
+.rank-badge.top { background: var(--green); }
+.rank-badge.mid { background: var(--amber); }
+.rank-badge.low { background: var(--text-muted); }
+/* Company */
+.company-name { font-size: 13px; font-weight: 600; color: #fff; }
+.company-ticker { font-size: 10px; color: var(--text-muted); text-transform: uppercase; margin-top: 2px; }
+.company-industry { font-size: 10px; color: var(--accent); margin-top: 1px; }
+/* Sector */
+.sector-tag { font-size: 11px; color: var(--blue); font-weight: 500; }
+/* Score */
+.score-cell { display: flex; align-items: center; gap: 10px; }
+.score-num { font-size: 14px; font-weight: 800; min-width: 28px; }
+.score-bar-bg { width: 80px; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+.score-bar { height: 100%; border-radius: 3px; transition: width 0.3s; }
+.score-bar.high { background: var(--green); }
+.score-bar.med { background: var(--amber); }
+.score-bar.low { background: var(--red); }
+/* Trend */
+.trend-cell { font-size: 12px; font-weight: 600; white-space: nowrap; }
+.trend-cell.up { color: var(--green); }
+.trend-cell.flat { color: var(--text-muted); }
+.trend-cell.down { color: var(--red); }
+/* Data quality */
+.dq-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.dq-dot.good { background: var(--green); }
+.dq-dot.partial { background: var(--amber); }
+.dq-dot.bad { background: var(--red); }
+/* Signal */
+.signal-text { font-size: 12px; color: var(--text-dim); max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Expand */
+.expand-arrow { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); transition: transform 0.2s; font-size: 10px; }
+.company-row.expanded .expand-arrow { transform: rotate(180deg); }
+
+/* ── Detail Panel ────────────────────────────────────────── */
+.detail-row { display: none; }
+.detail-row.visible { display: table-row; }
+.detail-row td { padding: 0 !important; border-bottom: 2px solid var(--border); }
+.detail-panel { padding: 0; background: var(--bg); }
+
+/* Tabs */
+.tab-bar { display: flex; border-bottom: 1px solid var(--border); background: var(--surface); padding: 0 20px; }
+.tab-btn {
+  padding: 12px 18px; font-size: 11px; font-weight: 600; color: var(--text-muted);
+  border: none; background: none; cursor: pointer; border-bottom: 2px solid transparent;
+  transition: all 0.15s; letter-spacing: 0.3px;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-content { display: none; padding: 20px 24px; }
+.tab-content.active { display: block; }
+
+/* Detail sections */
+.d-section-title { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; margin-top: 18px; }
+.d-section-title:first-child { margin-top: 0; }
+.d-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.d-kv { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+.d-kv-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
+.d-kv-value { font-size: 16px; font-weight: 700; margin-top: 4px; color: #fff; }
+.d-kv-value.sm { font-size: 13px; font-weight: 600; }
+
+/* Badges */
+.badge { display: inline-block; padding: 3px 8px; border-radius: 6px; font-size: 10px; font-weight: 600; }
+.badge-green { background: var(--green-soft); color: var(--green); }
+.badge-amber { background: var(--amber-soft); color: var(--amber); }
+.badge-red { background: var(--red-soft); color: var(--red); }
+.badge-blue { background: var(--blue-soft); color: var(--blue); }
+.badge-dim { background: var(--surface2); color: var(--text-muted); }
+
+/* Revenue bars */
+.rev-bars { display: flex; align-items: flex-end; gap: 6px; height: 60px; margin-top: 8px; }
+.rev-bar-col { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
+.rev-bar { width: 100%; border-radius: 4px 4px 0 0; background: var(--accent); min-height: 4px; transition: height 0.3s; }
+.rev-bar-label { font-size: 9px; color: var(--text-muted); white-space: nowrap; }
+.rev-bar-val { font-size: 10px; font-weight: 600; color: var(--text-dim); }
+
+/* Signal list */
+.signal-list { list-style: none; }
+.signal-list li { padding: 4px 0; font-size: 12px; color: var(--text-dim); display: flex; align-items: flex-start; gap: 8px; }
+.signal-list li::before { content: ''; width: 7px; height: 7px; min-width: 7px; border-radius: 50%; background: var(--green); margin-top: 5px; }
+.risk-list { list-style: none; }
+.risk-list li { padding: 3px 0; font-size: 12px; color: var(--red); font-weight: 500; display: flex; align-items: flex-start; gap: 6px; }
+.risk-list li::before { content: '!'; font-size: 10px; font-weight: 800; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--red-soft); min-width: 16px; }
+.reasoning-text { font-size: 12px; color: var(--text-dim); line-height: 1.6; }
+
+/* Announcement list */
+.ann-list { list-style: none; }
+.ann-item { padding: 8px 0; border-bottom: 1px solid var(--border); }
+.ann-item:last-child { border-bottom: none; }
+.ann-title { font-size: 12px; font-weight: 500; color: var(--text); }
+.ann-meta { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+.ann-context { font-size: 11px; color: var(--text-dim); margin-top: 3px; line-height: 1.4; }
+
+/* Hiring news */
+.hire-item { padding: 8px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; }
+.hire-title { font-size: 12px; font-weight: 600; color: var(--text); }
+.hire-title a { color: var(--blue); text-decoration: none; }
+.hire-title a:hover { text-decoration: underline; }
+.hire-snippet { font-size: 11px; color: var(--text-muted); margin-top: 4px; line-height: 1.4; }
+
+/* Email card */
+.email-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+.email-subject { font-weight: 700; color: #fff; margin-bottom: 12px; font-size: 13px; }
+.email-body { white-space: pre-wrap; font-size: 12px; color: var(--text-dim); line-height: 1.6; }
+.btn-copy {
+  margin-top: 14px; padding: 8px 16px; background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; font-size: 12px; font-weight: 500; color: var(--text-dim); cursor: pointer;
+}
+.btn-copy:hover { background: var(--border); color: var(--text); }
+.btn-copy.copied { background: var(--green); color: #fff; border-color: var(--green); }
+
+/* Provenance warning */
+.prov-warn { padding: 10px 14px; background: var(--amber-soft); border: 1px solid rgba(245,158,11,0.2); border-radius: 8px; margin-bottom: 14px; }
+.prov-warn-text { font-size: 11px; color: var(--amber); font-weight: 500; }
+
+/* Website link */
+.web-link { color: var(--blue); text-decoration: none; font-size: 12px; }
+.web-link:hover { text-decoration: underline; }
+
+/* Two-col layout in detail */
+.detail-cols { display: grid; grid-template-columns: 1fr 400px; gap: 24px; }
+@media (max-width: 1200px) { .detail-cols { grid-template-columns: 1fr; } }
+
+/* Print */
 @media print {
-  .sidebar, .header-actions, .btn-copy, .expand-arrow, .sidebar-section { display: none !important; }
+  .sidebar, .header-actions, .btn-copy, .expand-arrow, .tab-bar { display: none !important; }
   .main { margin-left: 0 !important; }
   .top-header { background: #1a2b4a !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .detail-row.visible { display: table-row !important; }
-  .rank-badge, .score-bar, .stat-value.green { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .tab-content { display: block !important; }
 }
 </style>
 </head>
 <body>
 
-<!-- ── SIDEBAR ────────────────────────────────────────────── -->
 <aside class="sidebar">
-  <div class="sidebar-brand">Prospect Intelligence</div>
-  <div class="sidebar-sub">AI-powered sales targeting</div>
-
+  <div class="sidebar-brand">Prospect AI</div>
+  <div class="sidebar-sub">B2B Sales Intelligence</div>
   <div class="sidebar-section">
     <div class="sidebar-label">Search</div>
-    <input type="text" class="sidebar-search" id="searchBox" placeholder="Company name...">
+    <input type="text" class="sidebar-search" id="searchBox" placeholder="Company or ticker...">
   </div>
-
   <div class="sidebar-section">
     <div class="sidebar-label">Sector</div>
     <ul class="sector-list" id="sectorFilters"></ul>
   </div>
-
   <div class="sidebar-section">
     <div class="sidebar-label">Minimum Score</div>
     <div class="slider-container">
-      <div class="slider-values">
-        <span>0</span>
-        <span class="current" id="sliderVal">0</span>
-        <span>100</span>
-      </div>
+      <div class="slider-values"><span>0</span><span class="current" id="sliderVal">0</span><span>100</span></div>
       <input type="range" id="scoreSlider" min="0" max="100" value="0">
     </div>
   </div>
-
   <div class="sidebar-section">
     <div class="sidebar-label">Revenue Trend</div>
     <div class="trend-options" id="trendFilter">
-      <button class="trend-btn active" data-trend="all">All trends</button>
-      <button class="trend-btn" data-trend="growing">↑ Growing only</button>
-      <button class="trend-btn" data-trend="flat">→ Flat</button>
+      <button class="trend-btn active" data-trend="all">All</button>
+      <button class="trend-btn" data-trend="growing">Growing</button>
+      <button class="trend-btn" data-trend="flat">Flat / Declining</button>
     </div>
   </div>
-
+  <div class="sidebar-section">
+    <div class="sidebar-label">Data Quality</div>
+    <div class="trend-options" id="dqFilter">
+      <button class="trend-btn active" data-dq="all">All</button>
+      <button class="trend-btn" data-dq="good">Full data only</button>
+    </div>
+  </div>
   <div class="sidebar-footer" id="refreshDate">Last refreshed: —</div>
 </aside>
 
-<!-- ── MAIN ───────────────────────────────────────────────── -->
 <div class="main">
   <div class="top-header">
     <div>
-      <div class="header-title">Prospect Intelligence Dashboard</div>
-      <div class="header-subtitle">Indian listed companies · ₹500Cr–₹2000Cr · IT/Software buyers</div>
+      <div class="header-title">Prospect Intelligence</div>
+      <div class="header-subtitle" id="headerSub">Indian listed companies &middot; B2B IT/Software buyers</div>
     </div>
     <div class="header-actions">
-      <button class="btn-export" onclick="exportCSV()">↓ Export CSV</button>
-      <button class="btn-print" onclick="window.print()">Print report</button>
+      <button class="btn-export" onclick="exportCSV()">Export CSV</button>
+      <button class="btn-print" onclick="window.print()">Print</button>
     </div>
   </div>
-
   <div class="content">
-    <!-- Stat cards -->
     <div class="stat-cards">
-      <div class="stat-card">
-        <div class="stat-label">Total Prospects</div>
-        <div class="stat-value" id="statTotal">—</div>
-        <div class="stat-sub" id="statTotalSub">across — sectors</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">High Priority (75+)</div>
-        <div class="stat-value green" id="statHigh">—</div>
-        <div class="stat-sub">ready to engage</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Avg Score</div>
-        <div class="stat-value" id="statAvg">—</div>
-        <div class="stat-sub">out of 100</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-label">Top Sector</div>
-        <div class="stat-value" id="statTopSector" style="font-size:24px;">—</div>
-        <div class="stat-sub" id="statTopSectorSub">—</div>
-      </div>
+      <div class="stat-card"><div class="stat-label">Prospects</div><div class="stat-value" id="statTotal">—</div><div class="stat-sub" id="statTotalSub">—</div></div>
+      <div class="stat-card"><div class="stat-label">Scoreable</div><div class="stat-value accent" id="statScoreable">—</div><div class="stat-sub" id="statScoreableSub">resolved on BSE/NSE</div></div>
+      <div class="stat-card"><div class="stat-label">High Priority</div><div class="stat-value green" id="statHigh">—</div><div class="stat-sub">score 75+</div></div>
+      <div class="stat-card"><div class="stat-label">Avg Score</div><div class="stat-value" id="statAvg">—</div><div class="stat-sub">out of 100</div></div>
+      <div class="stat-card"><div class="stat-label">Top Sector</div><div class="stat-value" id="statTopSector" style="font-size:18px">—</div><div class="stat-sub" id="statTopSectorSub">—</div></div>
     </div>
-
     <div class="showing-text" id="showingText">Showing <strong>0</strong> of <strong>0</strong> companies</div>
-
-    <!-- Data table -->
     <table class="data-table">
-      <thead>
-        <tr>
-          <th style="width:60px" onclick="sortTable('global_rank')">Rank <span class="sort-arrow">↕</span></th>
-          <th onclick="sortTable('name')">Company <span class="sort-arrow">↕</span></th>
-          <th onclick="sortTable('sector')">Sector <span class="sort-arrow">↕</span></th>
-          <th onclick="sortTable('score')" style="width:170px">Score <span class="sort-arrow" id="scoreArrow">↓</span></th>
-          <th style="width:90px" onclick="sortTable('revenue_growth_pct')">Trend <span class="sort-arrow">↕</span></th>
-          <th>Top Signal</th>
-          <th style="width:36px"></th>
-        </tr>
-      </thead>
+      <thead><tr>
+        <th style="width:50px" onclick="doSort('global_rank')">Rank <span class="sort-arrow">↕</span></th>
+        <th onclick="doSort('name')">Company <span class="sort-arrow">↕</span></th>
+        <th onclick="doSort('sector')">Sector <span class="sort-arrow">↕</span></th>
+        <th onclick="doSort('score')" style="width:160px">Score <span class="sort-arrow" id="scoreArrow">↓</span></th>
+        <th style="width:90px" onclick="doSort('revenue_growth_pct')">Trend <span class="sort-arrow">↕</span></th>
+        <th style="width:50px">Data</th>
+        <th>Top Signal</th>
+        <th style="width:36px"></th>
+      </tr></thead>
       <tbody id="tableBody"></tbody>
     </table>
   </div>
 </div>
 
 <script>
-// ══════════════════════════════════════════════════════════════
-// DATA — injected by reporter.py (this placeholder gets replaced)
-// ══════════════════════════════════════════════════════════════
-const REPORT_DATA = /*__DATA__*/[]/*__END__*/;
+const RAW_DATA = /*__DATA__*/[]/*__END__*/;
 
-// ── State ───────────────────────────────────────────────────
+// ── Accessor: flatten unified schema for rendering ──────────
+function mapCompany(c) {
+  const an = c.analyst||{}, pr = c.profile||{}, fi = c.financials||{},
+        id = c.identifiers||{}, fe = c.computed_features||{},
+        pv = c.provenance||{}, doc = c.documents||{}, nw = c.news||{},
+        ou = c.outreach||{};
+  return {
+    name: c.name||'', ticker: id.yahoo_ticker||'', sector: c.sector_query||pr.industry||'',
+    score: an.score||0, global_rank: an.global_rank||0, growth_trend: an.growth_trend||'',
+    revenue_growth_pct: fe.revenue_growth_pct_4q||0,
+    top_signals: an.top_signals||[], reasoning: an.reasoning||'',
+    recommended_approach: an.recommended_approach||'', outreach_angle: an.outreach_angle||'',
+    risk_factors: an.risk_factors||[],
+    email_subject: ou.email_subject||'', email_body: ou.email_body||'',
+    website: pr.website||'', description: pr.description||'',
+    long_summary: (pr.long_business_summary||'').slice(0,500),
+    industry: pr.industry||'', employees: pr.employees,
+    revenue_ttm: fi.revenue_ttm_crore, market_cap: fi.market_cap_crore,
+    ebitda_margin: fi.ebitda_margin, profit_margin: fi.profit_margin,
+    revenue_growth_yoy: fi.revenue_growth_yoy, revenue_quarters: fi.revenue_quarters||[],
+    analyst_rec: fi.analyst_recommendation, target_price: fi.target_mean_price,
+    current_price: fi.current_price, total_debt: fi.total_debt_crore,
+    screener_url: doc.screener_url||'', announcements: doc.announcements||[],
+    concalls: doc.concalls||[], credit_ratings: doc.credit_ratings||[],
+    ar_excerpt: (doc.annual_report_excerpt||'').slice(0,500),
+    has_cxo: fe.has_recent_cxo_change||false, has_concall: fe.has_concall_last_90d||false,
+    in_band: fe.in_revenue_target_band||false, emp_band: fe.employee_band||'',
+    hiring: (nw.hiring||[]),
+    failed: pv.failed_stages||[], confidence: id.name_match_confidence||0,
+    _raw: c,
+  };
+}
+
+let companies = RAW_DATA.map(mapCompany);
 let currentSort = { key: 'score', dir: 'desc' };
 let activeTrend = 'all';
-let companies = [...REPORT_DATA];
+let activeDQ = 'all';
 
-// ── Init ────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  buildSectorFilters();
-  renderStats();
-  renderTable();
-  bindEvents();
-
+  buildSectorFilters(); renderStats(); renderTable(); bindEvents();
   const d = new Date();
   document.getElementById('refreshDate').textContent =
-    'Last refreshed: ' + d.getDate() + ' ' + d.toLocaleString('en',{month:'short'}) + ' ' + d.getFullYear();
+    'Last refreshed: ' + d.getDate()+' '+d.toLocaleString('en',{month:'short'})+' '+d.getFullYear();
 });
 
 function buildSectorFilters() {
-  const sectors = [...new Set(companies.map(c => c.sector))];
-  const ul = document.getElementById('sectorFilters');
-  ul.innerHTML = sectors.map(s => `
-    <li class="sector-item">
-      <input type="checkbox" id="sec_${s}" value="${s}" checked>
-      <label for="sec_${s}">${s}</label>
-    </li>
+  const sectors = [...new Set(companies.map(c=>c.sector).filter(Boolean))];
+  document.getElementById('sectorFilters').innerHTML = sectors.map(s=>`
+    <li class="sector-item"><input type="checkbox" id="sec_${s}" value="${s}" checked><label for="sec_${s}">${s}</label></li>
   `).join('');
 }
 
 function bindEvents() {
   document.getElementById('searchBox').addEventListener('input', renderTable);
   document.getElementById('scoreSlider').addEventListener('input', e => {
-    document.getElementById('sliderVal').textContent = e.target.value;
-    renderTable();
+    document.getElementById('sliderVal').textContent = e.target.value; renderTable();
   });
-  document.querySelectorAll('#sectorFilters input').forEach(cb => cb.addEventListener('change', renderTable));
-  document.querySelectorAll('.trend-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.trend-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('#sectorFilters input').forEach(cb=>cb.addEventListener('change', renderTable));
+  document.querySelectorAll('.trend-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const grp = btn.parentElement;
+      grp.querySelectorAll('.trend-btn').forEach(b=>b.classList.remove('active'));
       btn.classList.add('active');
-      activeTrend = btn.dataset.trend;
+      if (btn.dataset.trend!==undefined) activeTrend=btn.dataset.trend;
+      if (btn.dataset.dq!==undefined) activeDQ=btn.dataset.dq;
       renderTable();
     });
   });
 }
 
-// ── Filtering ───────────────────────────────────────────────
 function getFiltered() {
   const q = document.getElementById('searchBox').value.toLowerCase();
-  const minScore = parseInt(document.getElementById('scoreSlider').value) || 0;
-  const checkedSectors = [...document.querySelectorAll('#sectorFilters input:checked')].map(c => c.value);
-
-  return companies.filter(c => {
-    if (q && !c.name.toLowerCase().includes(q) && !(c.ticker||'').toLowerCase().includes(q)) return false;
-    if (c.score < minScore) return false;
-    if (!checkedSectors.includes(c.sector)) return false;
-    if (activeTrend === 'growing' && (c.revenue_growth_pct||0) <= 0) return false;
-    if (activeTrend === 'flat' && (c.revenue_growth_pct||0) > 5) return false;
+  const minScore = parseInt(document.getElementById('scoreSlider').value)||0;
+  const checked = [...document.querySelectorAll('#sectorFilters input:checked')].map(c=>c.value);
+  return companies.filter(c=>{
+    if (q && !c.name.toLowerCase().includes(q) && !c.ticker.toLowerCase().includes(q)) return false;
+    if (c.score<minScore) return false;
+    if (c.sector && !checked.includes(c.sector)) return false;
+    if (activeTrend==='growing' && (c.revenue_growth_pct||0)<=0) return false;
+    if (activeTrend==='flat' && (c.revenue_growth_pct||0)>5) return false;
+    if (activeDQ==='good' && c.failed.length>0) return false;
     return true;
   });
 }
 
-// ── Sorting ─────────────────────────────────────────────────
-function sortTable(key) {
-  if (currentSort.key === key) {
-    currentSort.dir = currentSort.dir === 'asc' ? 'desc' : 'asc';
-  } else {
-    currentSort = { key, dir: key === 'name' || key === 'sector' ? 'asc' : 'desc' };
-  }
+function doSort(key) {
+  if (currentSort.key===key) currentSort.dir = currentSort.dir==='asc'?'desc':'asc';
+  else currentSort = {key, dir: key==='name'||key==='sector'?'asc':'desc'};
   renderTable();
 }
-
 function sorted(list) {
-  const { key, dir } = currentSort;
-  return [...list].sort((a, b) => {
-    let va = a[key], vb = b[key];
-    if (typeof va === 'string') va = va.toLowerCase();
-    if (typeof vb === 'string') vb = vb.toLowerCase();
-    if (va < vb) return dir === 'asc' ? -1 : 1;
-    if (va > vb) return dir === 'asc' ? 1 : -1;
+  const {key,dir}=currentSort;
+  return [...list].sort((a,b)=>{
+    let va=a[key],vb=b[key];
+    if(typeof va==='string')va=va.toLowerCase();
+    if(typeof vb==='string')vb=vb.toLowerCase();
+    if(va<vb)return dir==='asc'?-1:1;
+    if(va>vb)return dir==='asc'?1:-1;
     return 0;
   });
 }
 
-// ── Render stats ────────────────────────────────────────────
 function renderStats() {
-  const total = companies.length;
-  const high = companies.filter(c => c.score >= 75).length;
-  const avg = total ? Math.round(companies.reduce((s, c) => s + c.score, 0) / total) : 0;
-  const sectors = [...new Set(companies.map(c => c.sector))];
-
-  // Top sector by count
-  const counts = {};
-  companies.forEach(c => { counts[c.sector] = (counts[c.sector]||0) + 1; });
-  const topSector = Object.entries(counts).sort((a,b) => b[1]-a[1])[0];
-
-  document.getElementById('statTotal').textContent = total;
-  document.getElementById('statTotalSub').textContent = `across ${sectors.length} sectors`;
+  const scoreable = companies.filter(c=>c.failed.indexOf('name_resolution')===-1);
+  const high = scoreable.filter(c=>c.score>=75).length;
+  const avg = scoreable.length ? Math.round(scoreable.reduce((s,c)=>s+c.score,0)/scoreable.length) : 0;
+  const sectors = [...new Set(companies.map(c=>c.sector).filter(Boolean))];
+  const counts={};
+  companies.forEach(c=>{if(c.sector)counts[c.sector]=(counts[c.sector]||0)+1;});
+  const top = Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];
+  document.getElementById('statTotal').textContent = companies.length;
+  document.getElementById('statTotalSub').textContent = `across ${sectors.length} sector${sectors.length!==1?'s':''}`;
+  document.getElementById('statScoreable').textContent = scoreable.length;
   document.getElementById('statHigh').textContent = high;
   document.getElementById('statAvg').textContent = avg;
-  if (topSector) {
-    document.getElementById('statTopSector').textContent = topSector[0];
-    document.getElementById('statTopSectorSub').textContent = `${topSector[1]} companies`;
-  }
+  if(top){document.getElementById('statTopSector').textContent=top[0];document.getElementById('statTopSectorSub').textContent=top[1]+' companies';}
 }
 
-// ── Render table ────────────────────────────────────────────
+function dqClass(c){return c.failed.length===0?'good':c.failed.includes('name_resolution')?'bad':'partial';}
+function fmtCr(v){if(v==null)return'—';return v>=1000?(v/1000).toFixed(1)+'K Cr':'₹'+v.toFixed(0)+' Cr';}
+function fmtPct(v){if(v==null)return'—';return (v*100).toFixed(1)+'%';}
+function fmtNum(v){if(v==null)return'—';return v.toLocaleString('en-IN');}
+
 function renderTable() {
   const filtered = sorted(getFiltered());
+  document.getElementById('showingText').innerHTML = `Showing <strong>${filtered.length}</strong> of <strong>${companies.length}</strong> companies`;
   const tbody = document.getElementById('tableBody');
-
-  document.getElementById('showingText').innerHTML =
-    `Showing <strong>${filtered.length}</strong> of <strong>${companies.length}</strong> companies`;
-
-  tbody.innerHTML = filtered.map(c => {
-    const scoreClass = c.score >= 75 ? 'high' : c.score >= 50 ? 'med' : 'low';
-    const rankClass = c.global_rank <= 3 ? 'top' : c.global_rank <= 7 ? 'mid' : 'low';
-    const growth = c.revenue_growth_pct || 0;
-    const trendClass = growth > 0 ? 'up' : growth < -2 ? 'down' : 'flat';
-    const trendText = growth > 0 ? `↑ +${growth}%` : growth < 0 ? `→ ${growth}%` : '→ 0%';
-    const topSignal = (c.top_signals && c.top_signals[0]) || '—';
-
-    const signals = (c.top_signals||[]).map(s => `<li>${esc(s)}</li>`).join('');
-    const risks = (c.risk_factors||[]).map(r => `<li>${esc(r)}</li>`).join('');
-    const emailParts = (c.email_draft||'').split('\n\n');
-    const subject = (emailParts[0]||'').replace(/^SUBJECT:\s*/i, '');
-    const body = emailParts.slice(1).join('\n\n');
-
+  tbody.innerHTML = filtered.map((c,i) => {
+    const sc = c.score>=75?'high':c.score>=50?'med':'low';
+    const rc = c.global_rank<=3?'top':c.global_rank<=7?'mid':'low';
+    const g = c.revenue_growth_pct||0;
+    const tc = g>0?'up':g<-2?'down':'flat';
+    const tt = g>0?`↑ +${g.toFixed(1)}%`:g<0?`↓ ${g.toFixed(1)}%`:'→ 0%';
+    const ts = (c.top_signals[0])||'—';
+    const dq = dqClass(c);
+    const uid = 'c'+i;
     return `
       <tr class="company-row" onclick="toggleDetail(this)">
-        <td><div class="rank-badge ${rankClass}">${c.global_rank}</div></td>
-        <td><div class="company-name">${esc(c.name)}</div><div class="company-ticker">${esc(c.ticker||'')}</div></td>
+        <td><div class="rank-badge ${rc}">${c.global_rank||'—'}</div></td>
+        <td><div class="company-name">${esc(c.name)}</div><div class="company-ticker">${esc(c.ticker)}</div>${c.industry?`<div class="company-industry">${esc(c.industry)}</div>`:''}</td>
         <td><span class="sector-tag">${esc(c.sector)}</span></td>
-        <td><div class="score-cell"><span class="score-num">${c.score}</span><div class="score-bar-bg"><div class="score-bar ${scoreClass}" style="width:${c.score}%"></div></div></div></td>
-        <td><span class="trend-cell ${trendClass}">${trendText}</span></td>
-        <td><span class="signal-text">${esc(topSignal)}</span></td>
+        <td><div class="score-cell"><span class="score-num">${c.score}</span><div class="score-bar-bg"><div class="score-bar ${sc}" style="width:${c.score}%"></div></div></div></td>
+        <td><span class="trend-cell ${tc}">${tt}</span></td>
+        <td><span class="dq-dot ${dq}" title="${dq==='good'?'Full data':dq==='partial'?'Partial: '+c.failed.join(', '):'Not resolved'}"></span></td>
+        <td><span class="signal-text">${esc(ts)}</span></td>
         <td><span class="expand-arrow">▼</span></td>
       </tr>
-      <tr class="detail-row">
-        <td colspan="7">
-          <div class="detail-panel">
-            <div class="detail-left">
-              <div class="detail-section-title">Buy Signals</div>
-              <ul class="signal-list">${signals}</ul>
-              <div class="detail-section-title">Analyst Reasoning</div>
-              <p class="reasoning-text">${esc(c.reasoning||'')}</p>
-              <div class="detail-section-title">Risk Factors</div>
-              <ul class="risk-list">${risks || '<li style="color:#94a3b8">None identified</li>'}</ul>
-            </div>
-            <div class="detail-right">
-              <div class="detail-section-title">Outreach Email Draft</div>
-              <div class="email-card">
-                <div class="email-subject">SUBJECT: ${esc(subject)}</div>
-                <div class="email-body">${esc(body)}</div>
-                <button class="btn-copy" onclick="event.stopPropagation();copyEmail(this, \`${escJs(c.email_draft||'')}\`)">Copy email</button>
-              </div>
-            </div>
-          </div>
-        </td>
-      </tr>`;
+      <tr class="detail-row"><td colspan="8">${renderDetail(c,uid)}</td></tr>`;
   }).join('');
+}
+
+function renderDetail(c, uid) {
+  // Overview tab
+  const provWarn = c.failed.length ? `<div class="prov-warn"><span class="prov-warn-text">Data gaps: ${c.failed.join(', ')}. Some fields may be missing.</span></div>` : '';
+  const confBadge = c.confidence>=0.9?'badge-green':c.confidence>=0.7?'badge-amber':'badge-red';
+  const overview = `
+    ${provWarn}
+    <p style="font-size:12px;color:var(--text-dim);line-height:1.6;margin-bottom:12px">${esc(c.description||c.long_summary||'No description available')}</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+      ${c.industry?`<span class="badge badge-blue">${esc(c.industry)}</span>`:''}
+      ${c.emp_band&&c.emp_band!=='unknown'?`<span class="badge badge-dim">${c.emp_band} employees</span>`:''}
+      ${c.in_band?'<span class="badge badge-green">In revenue band</span>':'<span class="badge badge-amber">Outside revenue band</span>'}
+      ${c.has_cxo?'<span class="badge badge-green">Recent CXO change</span>':''}
+      ${c.has_concall?'<span class="badge badge-green">Recent concall</span>':''}
+      ${c.confidence?`<span class="badge ${confBadge}">Match ${(c.confidence*100).toFixed(0)}%</span>`:''}
+    </div>
+    ${c.website?`<a class="web-link" href="${esc(c.website)}" target="_blank">${esc(c.website)}</a>`:''}
+    ${c.screener_url?` &middot; <a class="web-link" href="${esc(c.screener_url)}" target="_blank">Screener.in</a>`:''}
+  `;
+
+  // Financials tab
+  const qBars = c.revenue_quarters.length ? renderQuarterBars(c.revenue_quarters) : '<p style="color:var(--text-muted);font-size:12px">No quarterly data</p>';
+  const ratings = c.credit_ratings.slice(0,3).map(r=>`<li class="ann-item"><div class="ann-title">${esc(r.title||'Rating')}</div><div class="ann-meta">${esc(r.date||'')}</div></li>`).join('');
+  const financials = `
+    <div class="d-grid">
+      <div class="d-kv"><div class="d-kv-label">Revenue TTM</div><div class="d-kv-value">${fmtCr(c.revenue_ttm)}</div></div>
+      <div class="d-kv"><div class="d-kv-label">Market Cap</div><div class="d-kv-value">${fmtCr(c.market_cap)}</div></div>
+      <div class="d-kv"><div class="d-kv-label">EBITDA Margin</div><div class="d-kv-value">${fmtPct(c.ebitda_margin)}</div></div>
+      <div class="d-kv"><div class="d-kv-label">Profit Margin</div><div class="d-kv-value">${fmtPct(c.profit_margin)}</div></div>
+      <div class="d-kv"><div class="d-kv-label">Revenue Growth YoY</div><div class="d-kv-value">${fmtPct(c.revenue_growth_yoy)}</div></div>
+      <div class="d-kv"><div class="d-kv-label">Employees</div><div class="d-kv-value">${c.employees?fmtNum(c.employees):'—'}</div></div>
+      <div class="d-kv"><div class="d-kv-label">Target Price</div><div class="d-kv-value">${c.target_price?'₹'+c.target_price.toFixed(0):'—'}</div></div>
+      <div class="d-kv"><div class="d-kv-label">Current Price</div><div class="d-kv-value">${c.current_price?'₹'+c.current_price.toFixed(0):'—'}</div></div>
+    </div>
+    <div class="d-section-title" style="margin-top:16px">Quarterly Revenue</div>
+    ${qBars}
+    ${ratings?`<div class="d-section-title">Credit Ratings</div><ul class="ann-list">${ratings}</ul>`:''}
+  `;
+
+  // Signals tab
+  const signals = c.top_signals.map(s=>`<li>${esc(s)}</li>`).join('');
+  const risks = c.risk_factors.filter(r=>r!=='not_listed').map(r=>`<li>${esc(r)}</li>`).join('');
+  const anns = c.announcements.slice(0,5).map(a=>`
+    <li class="ann-item">
+      <div class="ann-title">${esc(a.title||'')}</div>
+      <div class="ann-meta">${esc(a.date||'')}</div>
+      ${a.context?`<div class="ann-context">${esc(a.context)}</div>`:''}
+    </li>`).join('');
+  const hiringHtml = c.hiring.slice(0,3).map(h=>`
+    <div class="hire-item">
+      <div class="hire-title">${h.url?`<a href="${esc(h.url)}" target="_blank">${esc(h.title||'')}</a>`:esc(h.title||'')}</div>
+      ${h.content?`<div class="hire-snippet">${esc(h.content.slice(0,200))}</div>`:''}
+    </div>`).join('');
+  const signalsTab = `
+    ${signals?`<div class="d-section-title">Buy Signals</div><ul class="signal-list">${signals}</ul>`:''}
+    <div class="d-section-title">Analyst Reasoning</div>
+    <p class="reasoning-text">${esc(c.reasoning||'No reasoning provided')}</p>
+    ${risks?`<div class="d-section-title">Risk Factors</div><ul class="risk-list">${risks}</ul>`:''}
+    ${anns?`<div class="d-section-title">Recent Announcements</div><ul class="ann-list">${anns}</ul>`:''}
+    ${hiringHtml?`<div class="d-section-title">Hiring News</div>${hiringHtml}`:''}
+  `;
+
+  // Outreach tab
+  const outreach = `
+    <div class="detail-cols">
+      <div>
+        ${c.outreach_angle?`<div class="d-section-title">Outreach Angle</div><p class="reasoning-text">${esc(c.outreach_angle)}</p>`:''}
+        ${c.recommended_approach?`<div class="d-section-title">Recommended Approach</div><p class="reasoning-text">${esc(c.recommended_approach)}</p>`:''}
+      </div>
+      <div>
+        <div class="d-section-title">Email Draft</div>
+        <div class="email-card">
+          <div class="email-subject">${esc(c.email_subject||'[No subject]')}</div>
+          <div class="email-body">${esc(c.email_body||'[Draft pending]')}</div>
+          <button class="btn-copy" onclick="event.stopPropagation();copyEmail(this,'${escJs(c.email_subject+'\\n\\n'+c.email_body)}')">Copy email</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  return `<div class="detail-panel">
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="event.stopPropagation();switchTab(this,'${uid}','overview')">Overview</button>
+      <button class="tab-btn" onclick="event.stopPropagation();switchTab(this,'${uid}','financials')">Financials</button>
+      <button class="tab-btn" onclick="event.stopPropagation();switchTab(this,'${uid}','signals')">Signals</button>
+      <button class="tab-btn" onclick="event.stopPropagation();switchTab(this,'${uid}','outreach')">Outreach</button>
+    </div>
+    <div id="${uid}_overview" class="tab-content active">${overview}</div>
+    <div id="${uid}_financials" class="tab-content">${financials}</div>
+    <div id="${uid}_signals" class="tab-content">${signalsTab}</div>
+    <div id="${uid}_outreach" class="tab-content">${outreach}</div>
+  </div>`;
+}
+
+function renderQuarterBars(quarters) {
+  if(!quarters.length)return '';
+  const maxRev = Math.max(...quarters.map(q=>q.revenue_crore||0));
+  return `<div class="rev-bars">${quarters.map(q=>{
+    const h = maxRev>0 ? Math.max(((q.revenue_crore||0)/maxRev)*50, 4) : 4;
+    return `<div class="rev-bar-col"><div class="rev-bar-val">${(q.revenue_crore||0).toFixed(0)}</div><div class="rev-bar" style="height:${h}px"></div><div class="rev-bar-label">${esc(q.quarter||'')}</div></div>`;
+  }).join('')}</div>`;
+}
+
+function switchTab(btn, uid, tab) {
+  const panel = btn.closest('.detail-panel');
+  panel.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  panel.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(uid+'_'+tab).classList.add('active');
 }
 
 function toggleDetail(row) {
   const detail = row.nextElementSibling;
   const wasOpen = detail.classList.contains('visible');
-  // Close all
-  document.querySelectorAll('.detail-row.visible').forEach(r => r.classList.remove('visible'));
-  document.querySelectorAll('.company-row.expanded').forEach(r => r.classList.remove('expanded'));
-  if (!wasOpen) {
-    detail.classList.add('visible');
-    row.classList.add('expanded');
-  }
+  document.querySelectorAll('.detail-row.visible').forEach(r=>r.classList.remove('visible'));
+  document.querySelectorAll('.company-row.expanded').forEach(r=>r.classList.remove('expanded'));
+  if(!wasOpen){detail.classList.add('visible');row.classList.add('expanded');}
 }
 
 function copyEmail(btn, text) {
-  navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = 'Copied!';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'Copy email'; btn.classList.remove('copied'); }, 2000);
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='Copied!'; btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='Copy email';btn.classList.remove('copied');},2000);
   });
 }
 
-function esc(s) { const d = document.createElement('div'); d.textContent = s||''; return d.innerHTML; }
-function escJs(s) { return (s||'').replace(/\\/g,'\\\\').replace(/`/g,'\\`').replace(/\$/g,'\\$'); }
+function esc(s){const d=document.createElement('div');d.textContent=s||'';return d.innerHTML;}
+function escJs(s){return(s||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/\n/g,'\\n');}
 
-// ── CSV Export ──────────────────────────────────────────────
 function exportCSV() {
-  const filtered = sorted(getFiltered());
-  const headers = ['Rank','Company','Ticker','Sector','Score','Growth%','Top Signal','Reasoning'];
-  const rows = filtered.map(c => [
-    c.global_rank, `"${c.name}"`, c.ticker||'', `"${c.sector}"`, c.score,
-    c.revenue_growth_pct||0, `"${(c.top_signals||[])[0]||''}"`, `"${(c.reasoning||'').replace(/"/g,'""')}"`
+  const f = sorted(getFiltered());
+  const h = ['Rank','Company','Ticker','Sector','Industry','Score','Growth%','Revenue Cr','Market Cap Cr','Employees','Top Signal','Reasoning'];
+  const rows = f.map(c=>[
+    c.global_rank,`"${c.name}"`,c.ticker,`"${c.sector}"`,`"${c.industry}"`,c.score,
+    (c.revenue_growth_pct||0).toFixed(1), c.revenue_ttm||'', c.market_cap||'', c.employees||'',
+    `"${(c.top_signals[0]||'').replace(/"/g,'""')}"`,`"${(c.reasoning||'').replace(/"/g,'""').slice(0,200)}"`
   ]);
-  const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
-  const blob = new Blob([csv], {type:'text/csv'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'prospects_report.csv';
-  a.click();
+  const csv=[h.join(','),...rows.map(r=>r.join(','))].join('\n');
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download='prospects_report.csv'; a.click();
 }
 </script>
 </body>

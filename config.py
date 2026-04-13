@@ -18,7 +18,7 @@ SECTORS = [
 
 REVENUE_MIN_CRORE = 500
 REVENUE_MAX_CRORE = 2000
-MAX_COMPANIES_PER_SECTOR = 15
+MAX_COMPANIES_PER_SECTOR = 8
 QUARTERS_TO_ANALYZE = 4
 
 BUY_SIGNALS = [
@@ -44,9 +44,10 @@ TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 MAX_SEARCH_CHARS = 4000        # cap search text fed to agent — bumped to 4000 to give the LLM enough material to find 15 companies/sector
 MAX_OUTPUT_TOKENS = 2048       # cap per-call output
 MAX_REPORT_DATA_CHARS = 6000   # cap data blob sent to reporter (was 8000)
-TOP_COMPANIES_FOR_REPORT = 15  # email drafts only for top N (was 20)
+TOP_COMPANIES_FOR_REPORT = 100  # all scored companies go to report (email drafts for all)
 
 # ── S3 storage ──────────────────────────────────────────────────────────────
 S3_BUCKET = os.getenv("S3_BUCKET", "prospect-ai-data")
 S3_REGION = os.getenv("S3_REGION", AWS_REGION)         # falls back to AWS_DEFAULT_REGION
-S3_RESEARCH_PREFIX = os.getenv("S3_RESEARCH_PREFIX", "research")
+S3_RESEARCH_PREFIX = os.getenv("S3_RESEARCH_PREFIX", "research")  # legacy, kept for backward compat
+S3_RUNS_PREFIX = os.getenv("S3_RUNS_PREFIX", "runs")              # new: runs/{run_id}/{artifact}

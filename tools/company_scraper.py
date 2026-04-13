@@ -2,11 +2,14 @@
 #
 # Lightweight data fetcher used by agents/researcher.py to enrich
 # LLM-discovered companies. Two sources only:
-#   1) yfinance — basic financials (revenue, market cap, employees)
+#   1) yfinance — basic financials (revenue, market cap, employees, margins,
+#      growth, debt, target price, business summary)
 #   2) screener.in — corporate announcements, annual reports, concalls,
 #      credit ratings (single HTTP fetch parses all four)
-# Plus a small PDF helper for annual-report excerpts.
+# Plus a robust PDF helper for annual-report excerpts.
 
+import os
+import tempfile
 import requests
 import pdfplumber
 from bs4 import BeautifulSoup
@@ -23,6 +26,8 @@ DEFAULT_HEADERS = {
     )
 }
 
+PDF_MAX_BYTES = 30 * 1024 * 1024  # 30 MB
+
 
 class CompanyDataFetcher:
     def __init__(self, company_name: str, yahoo_ticker: Optional[str] = None):
@@ -31,7 +36,8 @@ class CompanyDataFetcher:
 
     # ── 1) yfinance financials ───────────────────────────────────────
     def get_financials_from_yahoo(self) -> Dict:
-        """Returns clean dict: revenue, market_cap, employees, sector, website."""
+        """Returns expanded yfinance projection. Raw INR values; researcher
+        converts to crore where the unified schema requires it."""
         if not self.yahoo_ticker:
             return {"error": "No ticker"}
         ticker = yf.Ticker(self.yahoo_ticker)
@@ -42,7 +48,53 @@ class CompanyDataFetcher:
             "employees": info.get("fullTimeEmployees"),
             "sector": info.get("sector"),
             "website": info.get("website"),
+            "ebitda_margins": info.get("ebitdaMargins"),
+            "profit_margins": info.get("profitMargins"),
+            "revenue_growth": info.get("revenueGrowth"),
+            "earnings_growth": info.get("earningsGrowth"),
+            "free_cashflow": info.get("freeCashflow"),
+            "total_debt": info.get("totalDebt"),
+            "current_price": info.get("currentPrice"),
+            "target_mean_price": info.get("targetMeanPrice"),
+            "recommendation_key": info.get("recommendationKey"),
+            "long_business_summary": info.get("longBusinessSummary"),
+            "industry": info.get("industry"),
         }
+
+    def get_quarterly_revenue(self) -> List[Dict]:
+        """Real quarterly revenue from yfinance. Returns last 4 quarters as
+        [{quarter, revenue_crore, source:'yfinance'}]. Most-recent first.
+        Empty list on any failure or missing data — caller decides fallback.
+        Replaces the LLM's hallucinated revenue_quarters in the researcher."""
+        if not self.yahoo_ticker:
+            return []
+        try:
+            ticker = yf.Ticker(self.yahoo_ticker)
+            qf = ticker.quarterly_financials
+            if qf is None or qf.empty or "Total Revenue" not in qf.index:
+                return []
+            revenue_row = qf.loc["Total Revenue"]
+            items: List[Dict] = []
+            for date, value in revenue_row.items():
+                if value is None:
+                    continue
+                try:
+                    val = float(value)
+                except (TypeError, ValueError):
+                    continue
+                if val != val:  # NaN check without importing math
+                    continue
+                quarter_label = (
+                    date.strftime("%b %Y") if hasattr(date, "strftime") else str(date)
+                )
+                items.append({
+                    "quarter": quarter_label,
+                    "revenue_crore": round(val / 1e7, 2),  # raw INR → crore
+                    "source": "yfinance",
+                })
+            return items[:4]
+        except Exception:
+            return []
 
     # ── 2) screener.in documents ─────────────────────────────────────
     def get_screener_documents(self, screener_symbol: str) -> Dict:
@@ -147,14 +199,63 @@ class CompanyDataFetcher:
         return items
 
     # ── 3) Annual report PDF excerpt ─────────────────────────────────
-    def extract_annual_report_pdf(self, pdf_url: str) -> str:
-        """Download and extract first 3000 characters from PDF to save tokens."""
-        resp = requests.get(pdf_url, stream=True, headers=DEFAULT_HEADERS, timeout=30)
-        resp.raise_for_status()
-        with open("temp.pdf", "wb") as f:
-            f.write(resp.content)
-        text = ""
-        with pdfplumber.open("temp.pdf") as pdf:
-            for page in pdf.pages[:3]:  # Only first 3 pages
-                text += page.extract_text() or ""
-        return text[:3000]
+    def extract_annual_report_pdf(self, pdf_url: str) -> Optional[str]:
+        """Download and extract MD&A-section text. Returns None on any failure
+        rather than raising — annual reports are best-effort enrichment.
+          - unique tmp file per company (no race, no overwrite)
+          - skip if Content-Type isn't pdf
+          - skip if Content-Length > 30 MB
+          - extract pages 8-19 (skip cover/index, hit MD&A)
+          - fallback to first 5 pages if PDF has fewer than 8 pages
+          - per-page try/except so one bad page doesn't kill the whole pull
+          - always cleans up the tmp file
+        """
+        safe_name = (self.name or "ar")[:15].replace(" ", "_")
+        tmp = tempfile.NamedTemporaryFile(
+            suffix=".pdf",
+            prefix=f"ar_{safe_name}_",
+            delete=False,
+        )
+        tmp_path = tmp.name
+        tmp.close()
+
+        try:
+            resp = requests.get(
+                pdf_url, stream=True, headers=DEFAULT_HEADERS, timeout=30
+            )
+            resp.raise_for_status()
+
+            ctype = (resp.headers.get("Content-Type") or "").lower()
+            if "pdf" not in ctype:
+                return None
+
+            clen = resp.headers.get("Content-Length")
+            if clen:
+                try:
+                    if int(clen) > PDF_MAX_BYTES:
+                        return None
+                except ValueError:
+                    pass
+
+            with open(tmp_path, "wb") as f:
+                for chunk in resp.iter_content(chunk_size=8192):
+                    if chunk:
+                        f.write(chunk)
+
+            text = ""
+            with pdfplumber.open(tmp_path) as pdf:
+                num_pages = len(pdf.pages)
+                page_range = pdf.pages[8:20] if num_pages >= 8 else pdf.pages[:5]
+                for page in page_range:
+                    try:
+                        text += (page.extract_text() or "")
+                    except Exception:
+                        continue
+            return text[:3000] if text else None
+        except Exception:
+            return None
+        finally:
+            try:
+                os.unlink(tmp_path)
+            except OSError:
+                pass
