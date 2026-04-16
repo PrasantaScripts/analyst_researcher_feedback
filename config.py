@@ -40,14 +40,26 @@ AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY_ID")
 AWS_SECRET_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
 
-# ── Token-saving knobs ──────────────────────────────────────────────────────
-MAX_SEARCH_CHARS = 4000        # cap search text fed to agent — bumped to 4000 to give the LLM enough material to find 15 companies/sector
-MAX_OUTPUT_TOKENS = 2048       # cap per-call output
-MAX_REPORT_DATA_CHARS = 6000   # cap data blob sent to reporter (was 8000)
-TOP_COMPANIES_FOR_REPORT = 100  # all scored companies go to report (email drafts for all)
+# Token-saving knobs
+MAX_SEARCH_CHARS = 4000        # input budget for Tavily text fed to LLM (~1000 tokens)
+MAX_OUTPUT_TOKENS = 2048       # hard cap per-call to prevent runaway responses
+MAX_REPORT_DATA_CHARS = 6000   # cap data blob sent to reporter
+TOP_COMPANIES_FOR_REPORT = 100 # number of companies that receive email drafts
 
-# ── S3 storage ──────────────────────────────────────────────────────────────
-S3_BUCKET = os.getenv("S3_BUCKET", "prospect-ai-data")
+# Name-resolution confidence thresholds (agents/researcher.py)
+NAME_MATCH_CONFIDENCE_THRESHOLD = 0.6  # reject yfinance result below this
+BLIND_MATCH_CONFIDENCE = 0.5           # assigned when no longname returned by yfinance
+
+# Time windows for computed features (agents/analyst.py)
+CXO_CHANGE_WINDOW_DAYS = 180  # lookback for CXO change signals
+CONCALL_RECENCY_DAYS = 90     # lookback for concall signals
+
+# PDF extraction page ranges — 0-indexed, targets the MD&A section (tools/company_scraper.py)
+PDF_MDNA_START_PAGE = 8   # skip cover + table of contents
+PDF_MDNA_END_PAGE = 20    # end of MD&A section (exclusive)
+PDF_FALLBACK_PAGES = 5    # pages to extract when PDF is shorter than start page
+
+# S3 storage
 S3_REGION = os.getenv("S3_REGION", AWS_REGION)         # falls back to AWS_DEFAULT_REGION
 S3_RESEARCH_PREFIX = os.getenv("S3_RESEARCH_PREFIX", "research")  # legacy, kept for backward compat
 S3_RUNS_PREFIX = os.getenv("S3_RUNS_PREFIX", "runs")              # new: runs/{run_id}/{artifact}

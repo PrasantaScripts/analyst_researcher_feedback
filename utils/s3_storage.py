@@ -29,14 +29,14 @@ def _client():
     return boto3.client("s3", region_name=config.S3_REGION)
 
 
-# ── Run ID ──────────────────────────────────────────────────────────────────
+# Run ID
 
 def generate_run_id() -> str:
     """Timestamp-based run ID. Sortable, human-readable, unique per second."""
     return f"run_{datetime.now().strftime('%Y-%m-%dT%H-%M-%S')}"
 
 
-# ── Preflight ───────────────────────────────────────────────────────────────
+# Preflight
 
 def preflight_check() -> None:
     """
@@ -60,7 +60,7 @@ def preflight_check() -> None:
     log(f"[s3] preflight OK — bucket={bucket} region={config.S3_REGION}")
 
 
-# ── Run-based artifact storage (NEW) ────────────────────────────────────────
+# Run-based artifact storage
 
 VALID_ARTIFACTS = ("research.json", "analysis.json", "report.html", "metrics.json")
 
@@ -185,7 +185,7 @@ def get_run_artifacts(run_id: str) -> Dict:
     return result
 
 
-# ── Legacy helpers (backward compat) ────────────────────────────────────────
+# Legacy helpers (backward compat)
 
 def upload_research_output(data: Dict, key: Optional[str] = None) -> str:
     """

@@ -16,6 +16,7 @@ from bs4 import BeautifulSoup
 from typing import Optional, Dict, List
 
 import yfinance as yf
+import config
 
 
 SCREENER_BASE = "https://www.screener.in/company"
@@ -34,7 +35,7 @@ class CompanyDataFetcher:
         self.name = company_name
         self.yahoo_ticker = yahoo_ticker
 
-    # ── 1) yfinance financials ───────────────────────────────────────
+    # 1) yfinance financials
     def get_financials_from_yahoo(self) -> Dict:
         """Returns expanded yfinance projection. Raw INR values; researcher
         converts to crore where the unified schema requires it."""
@@ -70,10 +71,11 @@ class CompanyDataFetcher:
             return []
         try:
             ticker = yf.Ticker(self.yahoo_ticker)
-            qf = ticker.quarterly_financials
-            if qf is None or qf.empty or "Total Revenue" not in qf.index:
+            quarterly_financials = ticker.quarterly_financials
+            if quarterly_financials is None or quarterly_financials.empty \
+                    or "Total Revenue" not in quarterly_financials.index:
                 return []
-            revenue_row = qf.loc["Total Revenue"]
+            revenue_row = quarterly_financials.loc["Total Revenue"]
             items: List[Dict] = []
             for date, value in revenue_row.items():
                 if value is None:
@@ -96,7 +98,7 @@ class CompanyDataFetcher:
         except Exception:
             return []
 
-    # ── 2) screener.in documents ─────────────────────────────────────
+    # 2) screener.in documents
     def get_screener_documents(self, screener_symbol: str) -> Dict:
         """
         Scrape https://www.screener.in/company/{symbol}/ and return:
@@ -198,7 +200,7 @@ class CompanyDataFetcher:
 
         return items
 
-    # ── 3) Annual report PDF excerpt ─────────────────────────────────
+    # 3) Annual report PDF excerpt
     def extract_annual_report_pdf(self, pdf_url: str) -> Optional[str]:
         """Download and extract MD&A-section text. Returns None on any failure
         rather than raising — annual reports are best-effort enrichment.
@@ -225,14 +227,14 @@ class CompanyDataFetcher:
             )
             resp.raise_for_status()
 
-            ctype = (resp.headers.get("Content-Type") or "").lower()
-            if "pdf" not in ctype:
+            content_type = (resp.headers.get("Content-Type") or "").lower()
+            if "pdf" not in content_type:
                 return None
 
-            clen = resp.headers.get("Content-Length")
-            if clen:
+            content_length = resp.headers.get("Content-Length")
+            if content_length:
                 try:
-                    if int(clen) > PDF_MAX_BYTES:
+                    if int(content_length) > PDF_MAX_BYTES:
                         return None
                 except ValueError:
                     pass
@@ -245,7 +247,11 @@ class CompanyDataFetcher:
             text = ""
             with pdfplumber.open(tmp_path) as pdf:
                 num_pages = len(pdf.pages)
-                page_range = pdf.pages[8:20] if num_pages >= 8 else pdf.pages[:5]
+                page_range = (
+                    pdf.pages[config.PDF_MDNA_START_PAGE:config.PDF_MDNA_END_PAGE]
+                    if num_pages >= config.PDF_MDNA_START_PAGE
+                    else pdf.pages[:config.PDF_FALLBACK_PAGES]
+                )
                 for page in page_range:
                     try:
                         text += (page.extract_text() or "")

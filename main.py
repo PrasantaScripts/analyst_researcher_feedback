@@ -1,11 +1,9 @@
-# main.py — Runs the full 3-agent pipeline with run-id-based S3 archival
-#
-# Pipeline: Researcher → Analyst → Reporter
-# Artifacts: research.json, analysis.json, report.html, metrics.json
-# All stored under s3://{S3_BUCKET}/runs/{run_id}/
+"""Main pipeline orchestrator with run‑id based S3 archival."""
 
-import json, os, sys
+import json
+import os
 from datetime import datetime
+from typing import Dict
 import config
 from agents.researcher import run_researcher
 from agents.analyst import run_analyst
@@ -15,13 +13,103 @@ from utils.logger import log
 from utils.s3_storage import preflight_check, generate_run_id, upload_artifact
 
 
-def run_pipeline(skip_research=False, skip_analysis=False):
+def build_pipeline_metrics(
+    run_id: str,
+    start_time: datetime,
+    end_time: datetime,
+    researcher_output: Dict,
+    analyst_output: Dict,
+) -> Dict:
+    """Construct the metrics artifact from token tracker and pipeline stats."""
+    total_input, total_output, total = tracker.totals()
+
+    all_companies = []
+    for sector in researcher_output.get("sectors", []):
+        all_companies.extend(sector.get("companies", []))
+
+    resolved_count = sum(
+        1 for company in all_companies
+        if "name_resolution" not in (company.get("provenance") or {}).get("failed_stages", [])
+    )
+
+    return {
+        "run_id": run_id,
+        "started_at": start_time.isoformat(),
+        "completed_at": end_time.isoformat(),
+        "duration_seconds": round((end_time - start_time).total_seconds(), 1),
+        "agents": tracker.by_agent(),
+        "totals": {
+            "input_tokens": total_input,
+            "output_tokens": total_output,
+            "total_tokens": total,
+            "estimated_cost_usd": round(tracker.estimate_cost(), 4),
+        },
+        "pipeline": {
+            "sectors_processed": len(researcher_output.get("sectors", [])),
+            "companies_discovered": len(all_companies),
+            "companies_resolved": resolved_count,
+            "companies_scored": analyst_output.get("total_companies_analysed", 0),
+            "companies_skipped": len(all_companies) - resolved_count,
+        },
+        "calls": [
+            {
+                "agent": call.agent,
+                "input_tokens": call.input_tokens,
+                "output_tokens": call.output_tokens,
+                "latency": call.latency_sec,
+                "time": call.timestamp,
+            }
+            for call in tracker.calls
+        ],
+    }
+
+
+def save_token_usage_log(run_id: str) -> None:
+    """Append token usage to logs/token_usage.json for local tracking."""
+    total_input, total_output, total = tracker.totals()
+    record = {
+        "run_id": run_id,
+        "run_date": datetime.now().isoformat(),
+        "total_calls": len(tracker.calls),
+        "input_tokens": total_input,
+        "output_tokens": total_output,
+        "total_tokens": total,
+        "estimated_cost_usd": round(tracker.estimate_cost(), 4),
+        "by_agent": tracker.by_agent(),
+        "calls": [
+            {
+                "agent": call.agent,
+                "input_tokens": call.input_tokens,
+                "output_tokens": call.output_tokens,
+                "latency": call.latency_sec,
+                "time": call.timestamp,
+            }
+            for call in tracker.calls
+        ],
+    }
+
     os.makedirs("logs", exist_ok=True)
-    os.makedirs("data", exist_ok=True)
-    os.makedirs("output", exist_ok=True)
+    log_path = "logs/token_usage.json"
+    history = []
+    if os.path.exists(log_path):
+        try:
+            with open(log_path, encoding="utf-8") as f:
+                history = json.load(f)
+        except (json.JSONDecodeError, ValueError):
+            history = []
+    history.append(record)
+
+    with open(log_path, "w", encoding="utf-8") as f:
+        json.dump(history, f, indent=2)
+    print(f"Token log saved to {log_path}")
+
+
+def run_pipeline() -> str:
+    """Execute the full three‑agent pipeline and upload artifacts to S3."""
+    os.makedirs("logs", exist_ok=True)
 
     tracker.reset()
-    start = datetime.now()
+    start_time = datetime.now()
     run_id = generate_run_id()
 
     # Fail fast if S3 is misconfigured
@@ -31,138 +119,39 @@ def run_pipeline(skip_research=False, skip_analysis=False):
     log(f"PROSPECTS AI PIPELINE STARTING — {run_id}")
     log("=" * 60)
 
-    # ── RESEARCHER ─────────────────────────────────────────────────
-    if skip_research and os.path.exists("data/raw/all_sectors.json"):
-        log("⏭️  Skipping research — loading cached data")
-        with open("data/raw/all_sectors.json") as f:
-            researcher_output = json.load(f)
-    else:
-        log("▶️  Agent 1: Researcher")
-        researcher_output = run_researcher()
-
+    log("Agent 1: Researcher")
+    researcher_output = run_researcher()
     researcher_output["run_id"] = run_id
     upload_artifact(run_id, "research.json", researcher_output)
 
-    # ── ANALYST ────────────────────────────────────────────────────
-    if skip_analysis and os.path.exists("data/analyst_output.json"):
-        log("⏭️  Skipping analysis — loading cached scores")
-        with open("data/analyst_output.json") as f:
-            analyst_output = json.load(f)
-    else:
-        log("▶️  Agent 2: Analyst")
-        analyst_output = run_analyst(researcher_output)
-
+    log("Agent 2: Analyst")
+    analyst_output = run_analyst(researcher_output)
     analyst_output["run_id"] = run_id
     upload_artifact(run_id, "analysis.json", analyst_output)
 
-    # ── REPORTER ───────────────────────────────────────────────────
-    log("▶️  Agent 3: Reporter")
-    html = run_reporter(analyst_output)
-    upload_artifact(run_id, "report.html", html)
+    log("Agent 3: Reporter")
+    report_html = run_reporter(analyst_output)
+    upload_artifact(run_id, "report.html", report_html)
 
-    # ── METRICS ────────────────────────────────────────────────────
-    end = datetime.now()
-    duration = (end - start).total_seconds()
-    metrics = _build_metrics(run_id, start, end, researcher_output, analyst_output)
+    end_time = datetime.now()
+    duration_sec = (end_time - start_time).total_seconds()
+
+    metrics = build_pipeline_metrics(run_id, start_time, end_time, researcher_output, analyst_output)
     upload_artifact(run_id, "metrics.json", metrics)
 
     log(
-        f"🏁 PIPELINE COMPLETE in {duration:.0f}s — {run_id}\n"
+        f"PIPELINE COMPLETE in {duration_sec:.0f}s — {run_id}\n"
         f"   s3://{config.S3_BUCKET}/{config.S3_RUNS_PREFIX}/{run_id}/"
     )
 
-    # ══════════════════════════════════════════════════════════════
-    # TOKEN USAGE SUMMARY
-    # ══════════════════════════════════════════════════════════════
     tracker.print_summary()
-
-    # Also save token log locally
-    _save_token_log(run_id)
+    save_token_usage_log(run_id)
 
     return run_id
 
 
-def _build_metrics(run_id: str, start: datetime, end: datetime,
-                   researcher_output: dict, analyst_output: dict) -> dict:
-    """Build the metrics artifact from the token tracker and pipeline stats."""
-    inp, out, total = tracker.totals()
-
-    # Count pipeline stats from researcher output
-    all_companies = []
-    for s in researcher_output.get("sectors", []):
-        all_companies.extend(s.get("companies", []))
-
-    resolved = sum(
-        1 for c in all_companies
-        if "name_resolution" not in (c.get("provenance") or {}).get("failed_stages", [])
-    )
-    scored = analyst_output.get("total_companies_analysed", 0)
-
-    return {
-        "run_id": run_id,
-        "started_at": start.isoformat(),
-        "completed_at": end.isoformat(),
-        "duration_seconds": round((end - start).total_seconds(), 1),
-        "agents": tracker.by_agent(),
-        "totals": {
-            "input_tokens": inp,
-            "output_tokens": out,
-            "total_tokens": total,
-            "estimated_cost_usd": round(tracker.estimate_cost(), 4),
-        },
-        "pipeline": {
-            "sectors_processed": len(researcher_output.get("sectors", [])),
-            "companies_discovered": len(all_companies),
-            "companies_resolved": resolved,
-            "companies_scored": scored,
-            "companies_skipped": len(all_companies) - resolved,
-        },
-        "calls": [
-            {
-                "agent": c.agent,
-                "in": c.input_tokens,
-                "out": c.output_tokens,
-                "latency": c.latency_sec,
-                "time": c.timestamp,
-            }
-            for c in tracker.calls
-        ],
-    }
-
-
-def _save_token_log(run_id: str = ""):
-    """Persist token usage as JSON for local historical tracking."""
-    inp, out, total = tracker.totals()
-    record = {
-        "run_id": run_id,
-        "run_date": datetime.now().isoformat(),
-        "total_calls": len(tracker.calls),
-        "input_tokens": inp,
-        "output_tokens": out,
-        "total_tokens": total,
-        "estimated_cost_usd": round(tracker.estimate_cost(), 4),
-        "by_agent": tracker.by_agent(),
-        "calls": [
-            {"agent": c.agent, "in": c.input_tokens, "out": c.output_tokens,
-             "latency": c.latency_sec, "time": c.timestamp}
-            for c in tracker.calls
-        ],
-    }
-    path = "logs/token_usage.json"
-    history = []
-    if os.path.exists(path):
-        try:
-            with open(path) as f:
-                history = json.load(f)
-        except (json.JSONDecodeError, ValueError):
-            history = []
-    history.append(record)
-    with open(path, "w") as f:
-        json.dump(history, f, indent=2)
-    print(f"📝 Token log saved to {path}")
-
-
 def lambda_handler(event, context):
+    """AWS Lambda entry point."""
     run_id = run_pipeline()
     return {
         "statusCode": 200,
@@ -171,6 +160,4 @@ def lambda_handler(event, context):
 
 
 if __name__ == "__main__":
-    skip_research = "--skip-research" in sys.argv or "--report-only" in sys.argv
-    skip_analysis = "--report-only" in sys.argv
-    run_pipeline(skip_research=skip_research, skip_analysis=skip_analysis)
+    run_pipeline()

@@ -1,4 +1,5 @@
-# utils/token_tracker.py — Tracks token usage across all agents
+# utils/token_tracker.py — Tracks token usage across all agents.
+# Import the global `tracker` instance and call tracker.record() after each agent response.
 
 import time
 from datetime import datetime
@@ -27,13 +28,11 @@ class TokenTracker:
         self.calls = []
         self.start_time = time.time()
 
-    # ── Record one API call ──────────────────────────────────────────────────
+    # Record one API call
     def record(self, agent_name: str, response, prompt: str, latency: float):
-        """
-        Extract token counts from a Strands Agent response and store them.
-        Strands wraps the Bedrock response; token info lives in response.metrics
-        or response.usage depending on SDK version. We try multiple paths.
-        """
+        """Extract token counts from a Strands Agent response and store them.
+        Tries multiple paths because the Strands SDK exposes token info differently
+        across versions (response.metrics, response.usage, response.result.usage)."""
         inp, out = 0, 0
 
         # Path 1: response.metrics dict (strands-agents >=0.1.6)
@@ -83,34 +82,37 @@ class TokenTracker:
         self.calls.append(rec)
 
         # Live mini-log
-        print(f"   📊 Tokens → in: {inp:,}  out: {out:,}  total: {total:,}  ({latency:.1f}s)")
+        print(f"   Tokens -> in: {inp:,}  out: {out:,}  total: {total:,}  ({latency:.1f}s)")
 
-    # ── Summary helpers ──────────────────────────────────────────────────────
+    # Summary helpers
     def totals(self):
-        inp = sum(c.input_tokens for c in self.calls)
-        out = sum(c.output_tokens for c in self.calls)
-        return inp, out, inp + out
+        total_input = sum(c.input_tokens for c in self.calls)
+        total_output = sum(c.output_tokens for c in self.calls)
+        return total_input, total_output, total_input + total_output
 
     def by_agent(self) -> dict[str, dict]:
         agents: dict[str, dict] = {}
         for c in self.calls:
-            a = agents.setdefault(c.agent, {"calls": 0, "in": 0, "out": 0, "total": 0, "latency": 0.0})
+            a = agents.setdefault(
+                c.agent,
+                {"calls": 0, "input_tokens": 0, "output_tokens": 0, "total": 0, "latency": 0.0},
+            )
             a["calls"] += 1
-            a["in"] += c.input_tokens
-            a["out"] += c.output_tokens
+            a["input_tokens"] += c.input_tokens
+            a["output_tokens"] += c.output_tokens
             a["total"] += c.total_tokens
             a["latency"] += c.latency_sec
         return agents
 
     def estimate_cost(self, price_per_1k_input=0.003, price_per_1k_output=0.015) -> float:
         """Rough cost estimate — adjust prices for your Bedrock model."""
-        inp, out, _ = self.totals()
-        return (inp / 1000) * price_per_1k_input + (out / 1000) * price_per_1k_output
+        total_input, total_output, _ = self.totals()
+        return (total_input / 1000) * price_per_1k_input + (total_output / 1000) * price_per_1k_output
 
-    # ── Pretty console report ────────────────────────────────────────────────
+    # Console report
     def print_summary(self):
         elapsed = time.time() - (self.start_time or time.time())
-        inp, out, total = self.totals()
+        total_input, total_output, total = self.totals()
         cost = self.estimate_cost()
 
         print("\n")
@@ -121,11 +123,11 @@ class TokenTracker:
         # Per-agent breakdown
         for name, stats in self.by_agent().items():
             print(f"║  {name:<16} │ calls: {stats['calls']:<3} │ "
-                  f"in: {stats['in']:>7,} │ out: {stats['out']:>7,} ║")
+                  f"in: {stats['input_tokens']:>7,} │ out: {stats['output_tokens']:>7,} ║")
 
         print("╠" + "═" * 62 + "╣")
         print(f"║  {'TOTAL':<16} │ calls: {len(self.calls):<3} │ "
-              f"in: {inp:>7,} │ out: {out:>7,} ║")
+              f"in: {total_input:>7,} │ out: {total_output:>7,} ║")
         print(f"║  {'Grand total tokens:':<30} {total:>15,}        ║")
         print(f"║  {'Estimated cost (USD):':<30} ${cost:>14.4f}        ║")
         print(f"║  {'Pipeline duration:':<30} {elapsed:>12.0f}s        ║")
