@@ -63,7 +63,7 @@ def create_researcher_agent() -> Agent:
     """Build the Bedrock agent for company discovery."""
     model = BedrockModel(model_id=config.BEDROCK_MODEL_ID, region_name=config.AWS_REGION)
     system_prompt = (
-        "You are a market research analyst for Indian listed companies (BSE/NSE). "
+        "You are a market research analyst for Indian Public listed companies (BSE/NSE). "
         f"Find companies with revenue ₹{config.REVENUE_MIN_CRORE}-{config.REVENUE_MAX_CRORE} Cr. "
         "Return ONLY valid JSON. No markdown fences, no extra text.\n"
         'Format: {"sector":"…","companies":[{"name":"…","ticker":"…","exchange":"BSE/NSE",'

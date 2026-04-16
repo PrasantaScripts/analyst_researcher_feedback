@@ -63,3 +63,4 @@ PDF_FALLBACK_PAGES = 5    # pages to extract when PDF is shorter than start page
 S3_REGION = os.getenv("S3_REGION", AWS_REGION)         # falls back to AWS_DEFAULT_REGION
 S3_RESEARCH_PREFIX = os.getenv("S3_RESEARCH_PREFIX", "research")  # legacy, kept for backward compat
 S3_RUNS_PREFIX = os.getenv("S3_RUNS_PREFIX", "runs")              # new: runs/{run_id}/{artifact}
+S3_BUCKET = os.getenv("S3_BUCKET")
